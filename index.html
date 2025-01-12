@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <title>Вычислить Платона</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="index_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+  <script src="index_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Вычислить Платона</h1>
+  <p class="subtitle">Что могут сказать количественные методы о подлинности диалогов корпуса?</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="о-чем-пойдет-речь" class="slide level2 scrollable">
+<h2>О чем пойдет речь</h2>
+<ol type="1">
+<li class="fragment">Раздел I: Источники
+<ul>
+<li class="fragment">Платон</li>
+<li class="fragment">Платоновский корпус</li>
+<li class="fragment">Подложные диалоги в корпусе</li>
+</ul></li>
+<li class="fragment">Раздел II: Методы
+<ul>
+<li class="fragment">Традиционные методы</li>
+<li class="fragment">Начало стилометрии</li>
+<li class="fragment">Современная стилометрия.</li>
+</ul></li>
+<li class="fragment">Полезные ссылки и обратная связь</li>
+</ol>
+</section>
+<section class="slide level2">
+
+</section>
+<section>
+<section id="раздел-i" class="title-slide slide level1 center">
+<h1>Раздел I</h1>
+
+</section>
+<section id="кто-такой-платон" class="slide level2">
+<h2>Кто такой Платон?</h2>
+<div class="column">
+<details>
+<summary>
+Годы жизни Платона.
+</summary>
+Примерно 427-347 гг. Он родился вскоре после начала Пелопонесских войн, а умер незадолго до завоеваний Александра Македонского.
+</details>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_35322" onsubmit="return validate_form_35322()" method="post">
+<input type="radio" name="answer_35322" id="answer_35322_1" value="V до н.э.">
+<label>V до н.э.</label>
+<br>
+<input type="radio" name="answer_35322" id="answer_35322_2" value="IV до н.э.">
+<label>IV до н.э.</label>
+<br>
+<input type="radio" name="answer_35322" id="answer_35322_3" value="V н.э.">
+<label>V н.э.</label>
+<br>
+<input type="radio" name="answer_35322" id="answer_35322_4" value="IV н.э.">
+<label>IV н.э.</label>
+<br>
+<input type="submit" value="проверить">
+<div id="result_35322"></div>
+</form>
+<script>function validate_form_35322() {var x, text; var x = document.forms['form_35322']['answer_35322'].value;if (x == 'IV до н.э.'){text = '🤩';} else {text = '🥺';} document.getElementById('result_35322').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+         element = document.getElementById('checkdown_final_score');
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_35322').innerText == '🤩';text = res1;element.innerHTML = text;
+         return false;
+         }}</script>
+</div>
+</div>
+</div><div class="column">
+<p><img data-src="plato_no_bg.png"></p>
+</div></section>
+<section id="что-такое-платоновский-корпус" class="slide level2">
+<h2>Что такое платоновский корпус?</h2>
+<div class="column" style="width:70%;">
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_51143" onsubmit="return validate_form_51143()" method="post">
+<input type="radio" name="answer_51143" id="answer_51143_1" value="здание Академии Платона">
+<label>здание Академии Платона</label>
+<br>
+<input type="radio" name="answer_51143" id="answer_51143_2" value="последователи Платона">
+<label>последователи Платона</label>
+<br>
+<input type="radio" name="answer_51143" id="answer_51143_3" value="останки Платона">
+<label>останки Платона</label>
+<br>
+<input type="radio" name="answer_51143" id="answer_51143_4" value="собрание текстов Платона">
+<label>собрание текстов Платона</label>
+<br>
+<input type="submit" value="проверить">
+<div id="result_51143"></div>
+</form>
+<script>function validate_form_51143() {var x, text; var x = document.forms['form_51143']['answer_51143'].value;if (x == 'собрание текстов Платона'){text = '🤩';} else {text = '🥺';} document.getElementById('result_51143').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+         element = document.getElementById('checkdown_final_score');
+         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_35322').innerText == '🤩'; res2 = document.getElementById('result_51143').innerText == '🤩';text = res1 + res2;element.innerHTML = text;
+         return false;
+         }}</script>
+</div>
+</div>
+<br>
+<details>
+<summary>
+А у кого еще есть “корпус”?
+</summary>
+Например, у Гиппократа, Лисия, Аристотеля, Плутарха.
+</details>
+</div><div class="column" style="width:30%;">
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Plato%27s_Academy_mosaic_from_Pompeii.jpg/1280px-Plato%27s_Academy_mosaic_from_Pompeii.jpg"></p>
+</div></section>
+<section id="тетралогии-трасилла" class="slide level2">
+<h2>Тетралогии Трасилла</h2>
+<div class="column" style="width:40%;">
+<p><img data-src="oxford.jpg"></p>
+</div><div class="column" style="width:60%;">
+<ul>
+<li class="fragment"><p>Корпус окончательно сложился к I веку до н.э. За его организацию отвечал придворный интеллектуал императора Тиберия по имени Трасилл.</p></li>
+<li class="fragment"><p>Трасилл объединил известные к тому времени диалоги в тетралогии: <span class="math inline">\(9 \times 4 = 36\)</span>.</p></li>
+<li class="fragment"><p>Appendix Platonica.</p></li>
+</ul>
+</div></section>
+<section id="как-это-все-сохранилось" class="slide level2">
+<h2>Как это все сохранилось?</h2>
+<div class="column">
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Clarke_Plato_page_1_recto.jpg/796px-Clarke_Plato_page_1_recto.jpg?20141007182829" style="width:80.0%"></p>
+</div><div class="column">
+<ul>
+<li class="fragment">византийские рукописи, самая древняя из которых относится к IX веку н.э. и хранится в Оксфорде;</li>
+<li class="fragment">папирусы с обрывками диалогов и комментариев к ним;</li>
+<li class="fragment">косвенная традиция (Стобей).</li>
+</ul>
+</div></section>
+<section id="не-только-платон" class="slide level2">
+<h2>Не только Платон</h2>
+<ul>
+<li class="fragment"><p><strong>Античность</strong>. Элиан сомневался в авторстве «Гиппарха», Трасилл — в авторстве «Соперников». «Послезаконие» приписывалось Филиппу Опунтскому, а «Алкивиад 2» — Ксенофонту. Диалоги из <em>Appendix Platonica</em> упомянуты у Диогена Лаэрция как подложные — νοθευόμενοι, т.е. «бастарды».</p></li>
+<li class="fragment"><p><strong>Филологическая критика XIX в.</strong> Ф. Аст (1816) признавал подлинными 14 диалогов, а К. Шааршмидт уменьшил этот список до 9. Дальнейший отказ от гиперкритицизма (П. Фридлендер). В числе спорных остаются, например, «Феаг» и «Алкивиад 1».</p></li>
+</ul>
+</section>
+<section id="сознательный-подлог" class="slide level2">
+<h2>Сознательный подлог…</h2>
+<blockquote>
+<p>Прежде чем александрийские и пергамские цари стали заботиться о приобретении древних книг, сочинений, ложно усвояемых писателям, не было. Но как только доставители писаний, принадлежащих какому-нибудь древнему мужу, начали получать вознаграждения, они стали доставлять много сочинений под ложными надписаниями. — Гален.</p>
+</blockquote>
+</section>
+<section id="или-философское-творчество" class="slide level2">
+<h2>…или философское творчество?</h2>
+<p>Феномен “школьной аккумуляции”: создание диалогов вплоть до конца эпохи эллинизма. Зачем?</p>
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_85882" onsubmit="return validate_form_85882()" method="post">
+<input type="radio" name="answer_85882" id="answer_85882_1" value="исследование">
+<label>исследование</label>
+<br>
+<input type="radio" name="answer_85882" id="answer_85882_2" value="обучение">
+<label>обучение</label>
+<br>
+<input type="radio" name="answer_85882" id="answer_85882_3" value="полемика">
+<label>полемика</label>
+<br>
+<input type="submit" value="проверить">
+<div id="result_85882"></div>
+</form>
+<script>function validate_form_85882() {var x, text; var x = document.forms['form_85882']['answer_85882'].value;if (x == 'исследование'|x == 'обучение'|x == 'полемика'){text = '🤩';} else {text = '🥺';} document.getElementById('result_85882').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+         element = document.getElementById('checkdown_final_score');
+         if(element === null){return false;} else {var element, text, res1, res2, res3;res1 = document.getElementById('result_35322').innerText == '🤩'; res2 = document.getElementById('result_51143').innerText == '🤩'; res3 = document.getElementById('result_85882').innerText == '🤩';text = res1 + res2 + res3;element.innerHTML = text;
+         return false;
+         }}</script>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="раздел-ii" class="title-slide slide level1 center">
+<h1>Раздел II</h1>
+
+</section>
+<section id="традиционные-методы" class="slide level2">
+<h2>Традиционные методы</h2>
+<ul>
+<li class="fragment">данные рукописной традиции;</li>
+<li class="fragment">свидетельства современников (Аристотель);</li>
+<li class="fragment">соответствие бытовых и исторических реалий времени жизни автора;</li>
+<li class="fragment">жанровая специфика;</li>
+<li class="fragment">соответствие языка и стиля тому, что известно по бесспорным произведениям;</li>
+<li class="fragment">содержательные соответствия;</li>
+<li class="fragment">связность и органическое единство произведения.</li>
+</ul>
+</section>
+<section id="количественные-методы" class="slide level2">
+<h2>Количественные методы</h2>
+<ul>
+<li class="fragment"><p><strong>1851</strong>: шотландский математик и логик Огастес де Морган <a href="https://archive.org/details/memoirofaugustus00demouoft/page/216/mode/2up?view=theater">предположил</a>, что споры о подлинности Послания к евреям святого ап. Павла можно разрешить путем измерения средней длины слов.</p></li>
+<li class="fragment"><p><strong>1887</strong> и <strong>1901</strong>:: Американский геофизик Томас К. Менденхолл <a href="https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_60/December_1901/A_Mechanical_Solution_of_a_Literary_Problem">проверил</a> гипотезу о том, что длина слов может быть отличительной характеристикой писателей. По его расчетам, Фрэнсис Бэкон никак не мог быть автором текстов Уильяма Шекспира.</p></li>
+</ul>
+</section>
+<section id="платоновский-вопрос" class="slide level2">
+<h2>Платоновский вопрос…</h2>
+<ul>
+<li class="fragment"><p>По аналогии с шекспировским, гомеровским и др.: можем ли мы отвергнуть тексты на основании статистики? Важнейшие имена в докомпьютерную эпоху: Л. Кэмпбелл, К. Риттер, В. Лютославски и др. (в основном, хронология).</p></li>
+<li class="fragment"><p>Развитие статистики и вычислительных машин дает новый стимул для стилометрических опытов, в 1980-е гг. установлена важность mfw для классификации, множество успешных экспериментов.</p></li>
+<li class="fragment"><p>…Но мы по-прежнему спорим о происхождении отдельных диалогов Платона.</p></li>
+</ul>
+</section>
+<section id="влияние-жанра" class="slide level2">
+<h2>Влияние жанра</h2>
+<p>Чтобы исследовать вопрос об авторстве, должен быть корпус произведений того же жанра и желательно примерно того же периода. Кто еще писал философские диалоги во времена Платона?</p>
+<div class="cell">
+<div class="cell-output-display">
+<form name="form_32461" onsubmit="return validate_form_32461()" method="post">
+<input type="radio" name="answer_32461" id="answer_32461_1" value="Сократ">
+<label>Сократ</label>
+<br>
+<input type="radio" name="answer_32461" id="answer_32461_2" value="Аристотель">
+<label>Аристотель</label>
+<br>
+<input type="radio" name="answer_32461" id="answer_32461_3" value="Антисфен">
+<label>Антисфен</label>
+<br>
+<input type="radio" name="answer_32461" id="answer_32461_4" value="Плутарх">
+<label>Плутарх</label>
+<br>
+<input type="submit" value="проверить">
+<div id="result_32461"></div>
+</form>
+<script>function validate_form_32461() {var x, text; var x = document.forms['form_32461']['answer_32461'].value;if (x == 'Аристотель'|x == 'Антисфен'){text = '🤩';} else {text = '🥺';} document.getElementById('result_32461').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+         element = document.getElementById('checkdown_final_score');
+         if(element === null){return false;} else {var element, text, res1, res2, res3, res4;res1 = document.getElementById('result_35322').innerText == '🤩'; res2 = document.getElementById('result_51143').innerText == '🤩'; res3 = document.getElementById('result_85882').innerText == '🤩'; res4 = document.getElementById('result_32461').innerText == '🤩';text = res1 + res2 + res3 + res4;element.innerHTML = text;
+         return false;
+         }}</script>
+</div>
+</div>
+</section>
+<section id="фактор-стилизации" class="slide level2">
+<h2>Фактор стилизации</h2>
+<ul>
+<li class="fragment"><p>искусный подражатель может быть почти неотличим от оригинала (“Феаг”, “Послезаконие”);</p></li>
+<li class="fragment"><p>подлинный диалог может вести себя подозрительно (“Менексен”);</p></li>
+<li class="fragment"><p>речевая характеристика героев;</p></li>
+<li class="fragment"><p>стиль, в отличие от отпечатка пальца, можно контролировать.</p></li>
+</ul>
+</section>
+<section id="фактор-редактуры" class="slide level2">
+<h2>Фактор редактуры</h2>
+<ul>
+<li class="fragment"><p>помимо автора, в текст вмешиваются редакторы, секретари, ученики;</p></li>
+<li class="fragment"><p>сам автор может перерабатывать значительные куски текста; выявить ревизию на небольших отрывках почти невозможно;</p></li>
+<li class="fragment"><p>сам Платон в нескольких диалогах говорит о ненадежности записанного слова. Что же нам остается?</p></li>
+</ul>
+</section>
+<section id="кластеризация" class="slide level2">
+<h2>Кластеризация</h2>
+<p>Каждый текст превращается в вектор признаков:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["αὐτὸ"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["αὐτῶν"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["αὐτῷ"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["αὖ"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["γάρ"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["γε"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["γὰρ"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["δ"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["δέ"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["δή"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["δεῖ"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["διὰ"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["δοκεῖ"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["δὲ"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["δὴ"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["εἰ"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["εἰς"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["εἴη"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["εἶναι"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["κατὰ"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["καὶ"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["λέγειν"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["λέγεις"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["μετὰ"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["μοι"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["μὲν"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["μὴ"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["μᾶλλον"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["ναί"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["νῦν"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["οἱ"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["οὐ"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["οὐδὲ"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["οὐδὲν"],"name":[34],"type":["dbl"],"align":["right"]},{"label":["οὐκ"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["οὐκοῦν"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["οὔ"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["οὔτε"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["οὕτω"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["οὕτως"],"name":[40],"type":["dbl"],"align":["right"]},{"label":["οὖν"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["πάντα"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["πάνυ"],"name":[43],"type":["dbl"],"align":["right"]},{"label":["περὶ"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["πρὸς"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["πῶς"],"name":[46],"type":["dbl"],"align":["right"]},{"label":["σοι"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["σὺ"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["τί"],"name":[49],"type":["dbl"],"align":["right"]},{"label":["ταῦτα"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["τε"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["τι"],"name":[52],"type":["dbl"],"align":["right"]},{"label":["τις"],"name":[53],"type":["dbl"],"align":["right"]},{"label":["τούτων"],"name":[54],"type":["dbl"],"align":["right"]},{"label":["τοὺς"],"name":[55],"type":["dbl"],"align":["right"]},{"label":["τοῖς"],"name":[56],"type":["dbl"],"align":["right"]},{"label":["τοῦ"],"name":[57],"type":["dbl"],"align":["right"]},{"label":["τοῦτο"],"name":[58],"type":["dbl"],"align":["right"]},{"label":["τὰ"],"name":[59],"type":["dbl"],"align":["right"]},{"label":["τὰς"],"name":[60],"type":["dbl"],"align":["right"]},{"label":["τὴν"],"name":[61],"type":["dbl"],"align":["right"]},{"label":["τὸ"],"name":[62],"type":["dbl"],"align":["right"]},{"label":["τὸν"],"name":[63],"type":["dbl"],"align":["right"]},{"label":["τῆς"],"name":[64],"type":["dbl"],"align":["right"]},{"label":["τῇ"],"name":[65],"type":["dbl"],"align":["right"]},{"label":["τῶν"],"name":[66],"type":["dbl"],"align":["right"]},{"label":["τῷ"],"name":[67],"type":["dbl"],"align":["right"]},{"label":["ἀλλ"],"name":[68],"type":["dbl"],"align":["right"]},{"label":["ἀλλὰ"],"name":[69],"type":["dbl"],"align":["right"]},{"label":["ἂν"],"name":[70],"type":["dbl"],"align":["right"]},{"label":["ἃ"],"name":[71],"type":["dbl"],"align":["right"]},{"label":["ἄλλο"],"name":[72],"type":["dbl"],"align":["right"]},{"label":["ἄν"],"name":[73],"type":["dbl"],"align":["right"]},{"label":["ἄρα"],"name":[74],"type":["dbl"],"align":["right"]},{"label":["ἐγὼ"],"name":[75],"type":["dbl"],"align":["right"]},{"label":["ἐκ"],"name":[76],"type":["dbl"],"align":["right"]},{"label":["ἐν"],"name":[77],"type":["dbl"],"align":["right"]},{"label":["ἐπὶ"],"name":[78],"type":["dbl"],"align":["right"]},{"label":["ἐστιν"],"name":[79],"type":["dbl"],"align":["right"]},{"label":["ἐὰν"],"name":[80],"type":["dbl"],"align":["right"]},{"label":["ἔστιν"],"name":[81],"type":["dbl"],"align":["right"]},{"label":["ἔτι"],"name":[82],"type":["dbl"],"align":["right"]},{"label":["ἡ"],"name":[83],"type":["dbl"],"align":["right"]},{"label":["ἡμῖν"],"name":[84],"type":["dbl"],"align":["right"]},{"label":["ἢ"],"name":[85],"type":["dbl"],"align":["right"]},{"label":["ἦ"],"name":[86],"type":["dbl"],"align":["right"]},{"label":["ἦν"],"name":[87],"type":["dbl"],"align":["right"]},{"label":["ὀρθῶς"],"name":[88],"type":["dbl"],"align":["right"]},{"label":["ὁ"],"name":[89],"type":["dbl"],"align":["right"]},{"label":["ὃ"],"name":[90],"type":["dbl"],"align":["right"]},{"label":["ὅταν"],"name":[91],"type":["dbl"],"align":["right"]},{"label":["ὅτι"],"name":[92],"type":["dbl"],"align":["right"]},{"label":["ὑπὸ"],"name":[93],"type":["dbl"],"align":["right"]},{"label":["ὡς"],"name":[94],"type":["dbl"],"align":["right"]},{"label":["ὥσπερ"],"name":[95],"type":["dbl"],"align":["right"]},{"label":["ὦ"],"name":[96],"type":["dbl"],"align":["right"]},{"label":["ὧν"],"name":[97],"type":["dbl"],"align":["right"]},{"label":["που"],"name":[98],"type":["dbl"],"align":["right"]},{"label":["ἐγώ"],"name":[99],"type":["dbl"],"align":["right"]},{"label":["ἔφη"],"name":[100],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0019788322","2":"0.0019635287","3":"0.0014163644","4":"0.0023020395","5":"0.0026405375","6":"0.0063794829","7":"0.005369762","8":"0.012960093","9":"0.0024180446","10":"0.0020312101","11":"0.0016906107","12":"0.0018909680","13":"0.0016213894","14":"0.013151565","15":"0.0061482705","16":"0.0037812608","17":"0.0041329187","18":"0.0017865714","19":"0.0055723642","20":"0.0018053835","21":"0.06007884","22":"0.0013012852","23":"0.0019656904","24":"0.0012275330","25":"1.643014e-03","26":"0.010666182","27":"0.005947261","28":"0.0015290206","29":"0.0009753530","30":"0.0016340463","31":"0.0031963177","32":"0.005894286","33":"0.0014508117","34":"0.0013830064","35":"0.0052178626","36":"2.888794e-03","37":"1.525787e-03","38":"0.0018458825","39":"0.0026385644","40":"0.0016181820","41":"0.006447650","42":"0.0020009935","43":"1.955322e-03","44":"0.004518724","45":"0.0048784219","46":"0.0026219372","47":"0.0010869288","48":"6.318276e-04","49":"0.0035955168","50":"0.0030111013","51":"0.017045907","52":"0.0039433057","53":"0.0028373976","54":"0.0020406161","55":"0.0049161616","56":"0.0034227694","57":"0.007961422","58":"0.003823461","59":"0.007617766","60":"0.0024574875","61":"0.0068292732","62":"0.012466410","63":"0.005494687","64":"0.0048096028","65":"0.0036094112","66":"0.009874368","67":"0.005210543","68":"0.0040144834","69":"0.0046486157","70":"0.008861866","71":"0.0013550141","72":"0.0013623854","73":"0.0017986882","74":"0.0023603608","75":"6.434549e-04","76":"0.0023415657","77":"0.010887762","78":"0.0023790378","79":"0.0007926716","80":"0.0014648927","81":"0.0009032578","82":"0.0012757775","83":"0.0036855369","84":"0.0021972592","85":"0.009769674","86":"2.918735e-03","87":"0.0076262981","88":"0.0014096194","89":"0.004823489","90":"0.0019164046","91":"0.0015996629","92":"0.005589111","93":"0.0023962874","94":"0.0071407374","95":"2.429258e-03","96":"0.0023058368","97":"0.0012257241","98":"0.0017836301","99":"0.0073272749","100":"1.202220e-02"},{"1":"0.0007185629","2":"0.0026347305","3":"0.0021556886","4":"0.0009580838","5":"0.0028742515","6":"0.0086227545","7":"0.008143713","8":"0.006467066","9":"0.0043113772","10":"0.0011976048","11":"0.0021556886","12":"0.0026347305","13":"0.0095808383","14":"0.014131737","15":"0.0021556886","16":"0.0045508982","17":"0.0023952096","18":"0.0009580838","19":"0.0095808383","20":"0.0014371257","21":"0.04982036","22":"0.0023952096","23":"0.0011976048","24":"0.0004790419","25":"3.832335e-03","26":"0.012934132","27":"0.004550898","28":"0.0021556886","29":"0.0014371257","30":"0.0019161677","31":"0.0059880240","32":"0.007664671","33":"0.0019161677","34":"0.0014371257","35":"0.0067065868","36":"4.550898e-03","37":"1.916168e-03","38":"0.0016766467","39":"0.0014371257","40":"0.0035928144","41":"0.009580838","42":"0.0019161677","43":"1.676647e-03","44":"0.001916168","45":"0.0069461078","46":"0.0023952096","47":"0.0071856287","48":"1.197605e-03","49":"0.0033532934","50":"0.0026347305","51":"0.010299401","52":"0.0055089820","53":"0.0035928144","54":"0.0052694611","55":"0.0055089820","56":"0.0026347305","57":"0.005988024","58":"0.002395210","59":"0.005988024","60":"0.0011976048","61":"0.0091017964","62":"0.006946108","63":"0.009341317","64":"0.0043113772","65":"0.0023952096","66":"0.008862275","67":"0.002874251","68":"0.0052694611","69":"0.0055089820","70":"0.012215569","71":"0.0009580838","72":"0.0011976048","73":"0.0043113772","74":"0.0021556886","75":"1.437126e-03","76":"0.0004790419","77":"0.003832335","78":"0.0009580838","79":"0.0016766467","80":"0.0007185629","81":"0.0014371257","82":"0.0031137725","83":"0.0019161677","84":"0.0014371257","85":"0.012694611","86":"1.197605e-03","87":"0.0019161677","88":"0.0021556886","89":"0.003113772","90":"0.0011976048","91":"0.0007185629","92":"0.002874251","93":"0.0009580838","94":"0.0055089820","95":"3.113772e-03","96":"0.0064670659","97":"0.0007185629","98":"0.0000000000","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0008257638","2":"0.0000000000","3":"0.0024772915","4":"0.0024772915","5":"0.0016515277","6":"0.0123864575","7":"0.005780347","8":"0.004954583","9":"0.0049545830","10":"0.0033030553","11":"0.0008257638","12":"0.0049545830","13":"0.0016515277","14":"0.029727498","15":"0.0041288192","16":"0.0024772915","17":"0.0000000000","18":"0.0000000000","19":"0.0090834021","20":"0.0000000000","21":"0.06936416","22":"0.0024772915","23":"0.0024772915","24":"0.0024772915","25":"8.257638e-04","26":"0.014037985","27":"0.007431874","28":"0.0000000000","29":"0.0198183320","30":"0.0000000000","31":"0.0115606936","32":"0.008257638","33":"0.0000000000","34":"0.0000000000","35":"0.0057803468","36":"4.128819e-03","37":"5.780347e-03","38":"0.0000000000","39":"0.0024772915","40":"0.0057803468","41":"0.004128819","42":"0.0008257638","43":"3.303055e-03","44":"0.010734930","45":"0.0016515277","46":"0.0016515277","47":"0.0074318745","48":"2.477291e-03","49":"0.0165152766","50":"0.0024772915","51":"0.005780347","52":"0.0016515277","53":"0.0008257638","54":"0.0024772915","55":"0.0041288192","56":"0.0008257638","57":"0.004128819","58":"0.001651528","59":"0.016515277","60":"0.0000000000","61":"0.0000000000","62":"0.019818332","63":"0.000000000","64":"0.0000000000","65":"0.0016515277","66":"0.011560694","67":"0.011560694","68":"0.0024772915","69":"0.0033030553","70":"0.004954583","71":"0.0008257638","72":"0.0016515277","73":"0.0016515277","74":"0.0156895128","75":"1.651528e-03","76":"0.0000000000","77":"0.009083402","78":"0.0008257638","79":"0.0082576383","80":"0.0016515277","81":"0.0016515277","82":"0.0000000000","83":"0.0008257638","84":"0.0024772915","85":"0.010734930","86":"8.257638e-04","87":"0.0041288192","88":"0.0000000000","89":"0.014037985","90":"0.0016515277","91":"0.0033030553","92":"0.009909166","93":"0.0000000000","94":"0.0033030553","95":"3.303055e-03","96":"0.0033030553","97":"0.0000000000","98":"0.0000000000","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0007698229","2":"0.0000000000","3":"0.0015396459","4":"0.0015396459","5":"0.0015396459","6":"0.0053887606","7":"0.007698229","8":"0.001539646","9":"0.0038491147","10":"0.0015396459","11":"0.0000000000","12":"0.0015396459","13":"0.0000000000","14":"0.013086990","15":"0.0046189376","16":"0.0076982294","17":"0.0007698229","18":"0.0000000000","19":"0.0038491147","20":"0.0015396459","21":"0.05311778","22":"0.0000000000","23":"0.0007698229","24":"0.0000000000","25":"7.698229e-04","26":"0.010777521","27":"0.006928406","28":"0.0023094688","29":"0.0046189376","30":"0.0000000000","31":"0.0153964588","32":"0.003849115","33":"0.0030792918","34":"0.0007698229","35":"0.0123171671","36":"3.079292e-03","37":"0.000000e+00","38":"0.0046189376","39":"0.0015396459","40":"0.0015396459","41":"0.012317167","42":"0.0007698229","43":"1.539646e-03","44":"0.001539646","45":"0.0023094688","46":"0.0007698229","47":"0.0015396459","48":"4.618938e-03","49":"0.0038491147","50":"0.0030792918","51":"0.006928406","52":"0.0023094688","53":"0.0023094688","54":"0.0023094688","55":"0.0076982294","56":"0.0046189376","57":"0.002309469","58":"0.003849115","59":"0.003079292","60":"0.0038491147","61":"0.0076982294","62":"0.004618938","63":"0.004618938","64":"0.0023094688","65":"0.0015396459","66":"0.024634334","67":"0.002309469","68":"0.0038491147","69":"0.0069284065","70":"0.013086990","71":"0.0000000000","72":"0.0000000000","73":"0.0015396459","74":"0.0038491147","75":"7.698229e-04","76":"0.0030792918","77":"0.010007698","78":"0.0015396459","79":"0.0023094688","80":"0.0000000000","81":"0.0023094688","82":"0.0007698229","83":"0.0046189376","84":"0.0038491147","85":"0.013086990","86":"0.000000e+00","87":"0.0092378753","88":"0.0000000000","89":"0.004618938","90":"0.0000000000","91":"0.0023094688","92":"0.006158584","93":"0.0000000000","94":"0.0023094688","95":"2.309469e-03","96":"0.0030792918","97":"0.0023094688","98":"0.0015396459","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0004464286","2":"0.0026785714","3":"0.0017857143","4":"0.0026785714","5":"0.0031250000","6":"0.0116071429","7":"0.007142857","8":"0.002678571","9":"0.0022321429","10":"0.0004464286","11":"0.0008928571","12":"0.0017857143","13":"0.0017857143","14":"0.013839286","15":"0.0035714286","16":"0.0035714286","17":"0.0017857143","18":"0.0004464286","19":"0.0093750000","20":"0.0013392857","21":"0.04464286","22":"0.0004464286","23":"0.0062500000","24":"0.0004464286","25":"1.339286e-03","26":"0.007142857","27":"0.003125000","28":"0.0026785714","29":"0.0062500000","30":"0.0017857143","31":"0.0044642857","32":"0.012500000","33":"0.0000000000","34":"0.0017857143","35":"0.0084821429","36":"4.017857e-03","37":"4.464286e-04","38":"0.0026785714","39":"0.0013392857","40":"0.0017857143","41":"0.009821429","42":"0.0031250000","43":"4.464286e-04","44":"0.003125000","45":"0.0004464286","46":"0.0008928571","47":"0.0035714286","48":"2.232143e-03","49":"0.0049107143","50":"0.0022321429","51":"0.003125000","52":"0.0062500000","53":"0.0031250000","54":"0.0022321429","55":"0.0044642857","56":"0.0031250000","57":"0.009375000","58":"0.006250000","59":"0.009375000","60":"0.0008928571","61":"0.0022321429","62":"0.025446429","63":"0.007142857","64":"0.0053571429","65":"0.0040178571","66":"0.010267857","67":"0.004464286","68":"0.0066964286","69":"0.0071428571","70":"0.006250000","71":"0.0022321429","72":"0.0017857143","73":"0.0022321429","74":"0.0053571429","75":"2.678571e-03","76":"0.0008928571","77":"0.007142857","78":"0.0031250000","79":"0.0049107143","80":"0.0017857143","81":"0.0008928571","82":"0.0008928571","83":"0.0017857143","84":"0.0017857143","85":"0.012500000","86":"1.339286e-03","87":"0.0008928571","88":"0.0013392857","89":"0.005357143","90":"0.0013392857","91":"0.0000000000","92":"0.008482143","93":"0.0040178571","94":"0.0058035714","95":"3.571429e-03","96":"0.0058035714","97":"0.0017857143","98":"0.0008928571","99":"0.0017857143","100":"0.000000e+00"},{"1":"0.0004178855","2":"0.0008357710","3":"0.0004178855","4":"0.0004178855","5":"0.0020894275","6":"0.0083577100","7":"0.004596740","8":"0.010029252","9":"0.0025073130","10":"0.0008357710","11":"0.0012536565","12":"0.0008357710","13":"0.0029251985","14":"0.012118679","15":"0.0041788550","16":"0.0062682825","17":"0.0033430840","18":"0.0008357710","19":"0.0146259925","20":"0.0008357710","21":"0.05432511","22":"0.0008357710","23":"0.0029251985","24":"0.0008357710","25":"6.686168e-03","26":"0.007939824","27":"0.005014626","28":"0.0008357710","29":"0.0029251985","30":"0.0004178855","31":"0.0054325115","32":"0.003343084","33":"0.0016715420","34":"0.0012536565","35":"0.0037609695","36":"2.925198e-03","37":"1.253656e-03","38":"0.0000000000","39":"0.0025073130","40":"0.0041788550","41":"0.010865023","42":"0.0016715420","43":"3.343084e-03","44":"0.011700794","45":"0.0037609695","46":"0.0008357710","47":"0.0020894275","48":"2.925198e-03","49":"0.0075219390","50":"0.0029251985","51":"0.007104053","52":"0.0037609695","53":"0.0045967405","54":"0.0025073130","55":"0.0104471375","56":"0.0037609695","57":"0.002507313","58":"0.003343084","59":"0.013372336","60":"0.0029251985","61":"0.0079398245","62":"0.010029252","63":"0.010447137","64":"0.0008357710","65":"0.0020894275","66":"0.010865023","67":"0.003343084","68":"0.0033430840","69":"0.0033430840","70":"0.007104053","71":"0.0008357710","72":"0.0012536565","73":"0.0016715420","74":"0.0054325115","75":"2.925198e-03","76":"0.0000000000","77":"0.006686168","78":"0.0000000000","79":"0.0054325115","80":"0.0004178855","81":"0.0020894275","82":"0.0012536565","83":"0.0033430840","84":"0.0020894275","85":"0.016715420","86":"2.507313e-03","87":"0.0020894275","88":"0.0054325115","89":"0.006268282","90":"0.0008357710","91":"0.0020894275","92":"0.008357710","93":"0.0012536565","94":"0.0033430840","95":"2.089427e-03","96":"0.0054325115","97":"0.0012536565","98":"0.0012536565","99":"0.0041788550","100":"1.253656e-02"},{"1":"0.0024769993","2":"0.0024769993","3":"0.0021231423","4":"0.0010615711","5":"0.0035385704","6":"0.0060155697","7":"0.007077141","8":"0.004600142","9":"0.0017692852","10":"0.0014154282","11":"0.0003538570","12":"0.0024769993","13":"0.0031847134","14":"0.018046709","15":"0.0038924275","16":"0.0046001415","17":"0.0038924275","18":"0.0007077141","19":"0.0092002831","20":"0.0028308563","21":"0.05095541","22":"0.0000000000","23":"0.0038924275","24":"0.0003538570","25":"1.415428e-03","26":"0.009554140","27":"0.004246285","28":"0.0007077141","29":"0.0092002831","30":"0.0010615711","31":"0.0141542817","32":"0.004600142","33":"0.0010615711","34":"0.0028308563","35":"0.0070771408","36":"5.661713e-03","37":"1.769285e-03","38":"0.0021231423","39":"0.0010615711","40":"0.0021231423","41":"0.009200283","42":"0.0007077141","43":"2.476999e-03","44":"0.007784855","45":"0.0003538570","46":"0.0014154282","47":"0.0021231423","48":"2.476999e-03","49":"0.0063694268","50":"0.0046001415","51":"0.008138712","52":"0.0010615711","53":"0.0024769993","54":"0.0035385704","55":"0.0049539986","56":"0.0070771408","57":"0.011677282","58":"0.004953999","59":"0.020169851","60":"0.0010615711","61":"0.0038924275","62":"0.009554140","63":"0.006015570","64":"0.0024769993","65":"0.0042462845","66":"0.009907997","67":"0.002476999","68":"0.0031847134","69":"0.0049539986","70":"0.006723284","71":"0.0021231423","72":"0.0046001415","73":"0.0010615711","74":"0.0067232838","75":"2.476999e-03","76":"0.0003538570","77":"0.008492569","78":"0.0024769993","79":"0.0063694268","80":"0.0014154282","81":"0.0038924275","82":"0.0014154282","83":"0.0046001415","84":"0.0038924275","85":"0.009554140","86":"7.077141e-04","87":"0.0014154282","88":"0.0021231423","89":"0.009200283","90":"0.0031847134","91":"0.0007077141","92":"0.007077141","93":"0.0017692852","94":"0.0074309979","95":"2.830856e-03","96":"0.0038924275","97":"0.0014154282","98":"0.0017692852","99":"0.0003538570","100":"3.538570e-04"},{"1":"0.0025204789","2":"0.0037807183","3":"0.0031505986","4":"0.0000000000","5":"0.0081915564","6":"0.0126023945","7":"0.009451796","8":"0.001890359","9":"0.0018903592","10":"0.0018903592","11":"0.0000000000","12":"0.0012602394","13":"0.0069313170","14":"0.007561437","15":"0.0018903592","16":"0.0113421550","17":"0.0006301197","18":"0.0075614367","19":"0.0100819156","20":"0.0018903592","21":"0.03276623","22":"0.0006301197","23":"0.0031505986","24":"0.0006301197","25":"3.780718e-03","26":"0.007561437","27":"0.020793951","28":"0.0012602394","29":"0.0031505986","30":"0.0025204789","31":"0.0050409578","32":"0.007561437","33":"0.0044108381","34":"0.0018903592","35":"0.0119722747","36":"8.821676e-03","37":"0.000000e+00","38":"0.0025204789","39":"0.0012602394","40":"0.0050409578","41":"0.013232514","42":"0.0006301197","43":"5.040958e-03","44":"0.020793951","45":"0.0044108381","46":"0.0031505986","47":"0.0063011972","48":"1.260239e-03","49":"0.0037807183","50":"0.0012602394","51":"0.012602394","52":"0.0100819156","53":"0.0063011972","54":"0.0018903592","55":"0.0031505986","56":"0.0031505986","57":"0.012602394","58":"0.005040958","59":"0.005040958","60":"0.0006301197","61":"0.0037807183","62":"0.018273472","63":"0.003780718","64":"0.0006301197","65":"0.0031505986","66":"0.011972275","67":"0.003150599","68":"0.0075614367","69":"0.0050409578","70":"0.027725268","71":"0.0037807183","72":"0.0044108381","73":"0.0050409578","74":"0.0012602394","75":"6.301197e-04","76":"0.0000000000","77":"0.004410838","78":"0.0018903592","79":"0.0107120353","80":"0.0006301197","81":"0.0018903592","82":"0.0031505986","83":"0.0000000000","84":"0.0025204789","85":"0.018273472","86":"7.561437e-03","87":"0.0012602394","88":"0.0006301197","89":"0.004410838","90":"0.0000000000","91":"0.0006301197","92":"0.004410838","93":"0.0006301197","94":"0.0006301197","95":"6.301197e-03","96":"0.0044108381","97":"0.0081915564","98":"0.0000000000","99":"0.0006301197","100":"0.000000e+00"},{"1":"0.0008660508","2":"0.0020207852","3":"0.0031755196","4":"0.0011547344","5":"0.0034642032","6":"0.0066397229","7":"0.008083141","8":"0.002598152","9":"0.0037528868","10":"0.0023094688","11":"0.0005773672","12":"0.0011547344","13":"0.0031755196","14":"0.014434180","15":"0.0028868360","16":"0.0080831409","17":"0.0028868360","18":"0.0008660508","19":"0.0046189376","20":"0.0005773672","21":"0.04994226","22":"0.0025981524","23":"0.0031755196","24":"0.0008660508","25":"6.639723e-03","26":"0.010392610","27":"0.002886836","28":"0.0025981524","29":"0.0040415704","30":"0.0034642032","31":"0.0034642032","32":"0.007505774","33":"0.0000000000","34":"0.0023094688","35":"0.0072170901","36":"1.443418e-03","37":"1.154734e-03","38":"0.0000000000","39":"0.0020207852","40":"0.0008660508","41":"0.008949192","42":"0.0008660508","43":"3.464203e-03","44":"0.003464203","45":"0.0037528868","46":"0.0002886836","47":"0.0051963048","48":"5.773672e-03","49":"0.0106812933","50":"0.0034642032","51":"0.008371824","52":"0.0034642032","53":"0.0014434180","54":"0.0054849885","55":"0.0051963048","56":"0.0011547344","57":"0.004618938","58":"0.004330254","59":"0.005196305","60":"0.0014434180","61":"0.0034642032","62":"0.006062356","63":"0.006062356","64":"0.0037528868","65":"0.0043302540","66":"0.019053118","67":"0.003175520","68":"0.0040415704","69":"0.0054849885","70":"0.012124711","71":"0.0005773672","72":"0.0017321016","73":"0.0017321016","74":"0.0008660508","75":"6.639723e-03","76":"0.0008660508","77":"0.006639723","78":"0.0008660508","79":"0.0020207852","80":"0.0017321016","81":"0.0020207852","82":"0.0014434180","83":"0.0054849885","84":"0.0025981524","85":"0.007794457","86":"1.732102e-03","87":"0.0017321016","88":"0.0008660508","89":"0.006062356","90":"0.0002886836","91":"0.0002886836","92":"0.006351039","93":"0.0005773672","94":"0.0040415704","95":"2.020785e-03","96":"0.0106812933","97":"0.0023094688","98":"0.0002886836","99":"0.0034642032","100":"3.464203e-03"},{"1":"0.0011973180","2":"0.0009578544","3":"0.0004789272","4":"0.0007183908","5":"0.0016762452","6":"0.0035919540","7":"0.006465517","8":"0.002394636","9":"0.0021551724","10":"0.0023946360","11":"0.0040708812","12":"0.0007183908","13":"0.0019157088","14":"0.013170498","15":"0.0052681992","16":"0.0071839080","17":"0.0035919540","18":"0.0007183908","19":"0.0033524904","20":"0.0002394636","21":"0.05986590","22":"0.0011973180","23":"0.0011973180","24":"0.0009578544","25":"3.591954e-03","26":"0.007183908","27":"0.006944444","28":"0.0019157088","29":"0.0004789272","30":"0.0035919540","31":"0.0074233716","32":"0.007902299","33":"0.0035919540","34":"0.0014367816","35":"0.0047892720","36":"9.578544e-04","37":"3.352490e-03","38":"0.0059865900","39":"0.0021551724","40":"0.0019157088","41":"0.003831418","42":"0.0009578544","43":"7.183908e-04","44":"0.004310345","45":"0.0033524904","46":"0.0011973180","47":"0.0064655172","48":"3.113027e-03","49":"0.0055076628","50":"0.0083812261","51":"0.008381226","52":"0.0038314176","53":"0.0011973180","54":"0.0026340996","55":"0.0059865900","56":"0.0043103448","57":"0.004789272","58":"0.004070881","59":"0.003591954","60":"0.0035919540","61":"0.0043103448","62":"0.008620690","63":"0.002155172","64":"0.0050287356","65":"0.0033524904","66":"0.012212644","67":"0.004789272","68":"0.0040708812","69":"0.0088601533","70":"0.010296935","71":"0.0019157088","72":"0.0016762452","73":"0.0026340996","74":"0.0021551724","75":"1.915709e-03","76":"0.0019157088","77":"0.007662835","78":"0.0007183908","79":"0.0031130268","80":"0.0033524904","81":"0.0000000000","82":"0.0033524904","83":"0.0047892720","84":"0.0062260536","85":"0.017001916","86":"2.394636e-04","87":"0.0009578544","88":"0.0009578544","89":"0.002873563","90":"0.0014367816","91":"0.0000000000","92":"0.008141762","93":"0.0011973180","94":"0.0081417625","95":"1.915709e-03","96":"0.0134099617","97":"0.0011973180","98":"0.0011973180","99":"0.0004789272","100":"0.000000e+00"},{"1":"0.0013513514","2":"0.0017374517","3":"0.0009652510","4":"0.0017374517","5":"0.0055984556","6":"0.0133204633","7":"0.010038610","8":"0.002702703","9":"0.0023166023","10":"0.0017374517","11":"0.0011583012","12":"0.0032818533","13":"0.0023166023","14":"0.010038610","15":"0.0057915058","16":"0.0067567568","17":"0.0025096525","18":"0.0030888031","19":"0.0057915058","20":"0.0011583012","21":"0.05212355","22":"0.0025096525","23":"0.0027027027","24":"0.0005791506","25":"5.212355e-03","26":"0.008108108","27":"0.004633205","28":"0.0005791506","29":"0.0011583012","30":"0.0038610039","31":"0.0059845560","32":"0.010810811","33":"0.0015444015","34":"0.0025096525","35":"0.0063706564","36":"1.930502e-03","37":"1.737452e-03","38":"0.0005791506","39":"0.0038610039","40":"0.0015444015","41":"0.005791506","42":"0.0013513514","43":"4.247104e-03","44":"0.007915058","45":"0.0030888031","46":"0.0011583012","47":"0.0040540541","48":"4.826255e-03","49":"0.0065637066","50":"0.0042471042","51":"0.007142857","52":"0.0044401544","53":"0.0027027027","54":"0.0019305019","55":"0.0028957529","56":"0.0032818533","57":"0.006949807","58":"0.006949807","59":"0.006177606","60":"0.0005791506","61":"0.0050193050","62":"0.019691120","63":"0.003861004","64":"0.0028957529","65":"0.0011583012","66":"0.009266409","67":"0.005791506","68":"0.0083011583","69":"0.0067567568","70":"0.010617761","71":"0.0021235521","72":"0.0017374517","73":"0.0032818533","74":"0.0032818533","75":"2.509653e-03","76":"0.0005791506","77":"0.003861004","78":"0.0015444015","79":"0.0063706564","80":"0.0005791506","81":"0.0017374517","82":"0.0003861004","83":"0.0036679537","84":"0.0023166023","85":"0.007915058","86":"1.544402e-03","87":"0.0007722008","88":"0.0030888031","89":"0.004633205","90":"0.0048262548","91":"0.0003861004","92":"0.013320463","93":"0.0040540541","94":"0.0102316602","95":"1.544402e-03","96":"0.0177606178","97":"0.0017374517","98":"0.0028957529","99":"0.0007722008","100":"0.000000e+00"},{"1":"0.0000000000","2":"0.0007171886","3":"0.0014343772","4":"0.0009562515","5":"0.0035859431","6":"0.0081281377","7":"0.008845326","8":"0.004064069","9":"0.0026296916","10":"0.0016734401","11":"0.0002390629","12":"0.0014343772","13":"0.0026296916","14":"0.016017213","15":"0.0023906287","16":"0.0059765718","17":"0.0047812575","18":"0.0028687545","19":"0.0066937605","20":"0.0033468802","21":"0.05952666","22":"0.0021515659","23":"0.0043031317","24":"0.0000000000","25":"5.259383e-03","26":"0.009801578","27":"0.002629692","28":"0.0014343772","29":"0.0071718862","30":"0.0028687545","31":"0.0040640689","32":"0.005976572","33":"0.0009562515","34":"0.0016734401","35":"0.0050203203","36":"4.064069e-03","37":"2.390629e-04","38":"0.0009562515","39":"0.0007171886","40":"0.0033468802","41":"0.005498446","42":"0.0004781257","43":"2.390629e-03","44":"0.008845326","45":"0.0047812575","46":"0.0014343772","47":"0.0021515659","48":"6.454698e-03","49":"0.0069328233","50":"0.0064546976","51":"0.008367201","52":"0.0033468802","53":"0.0033468802","54":"0.0026296916","55":"0.0026296916","56":"0.0016734401","57":"0.004781257","58":"0.002629692","59":"0.008606263","60":"0.0026296916","61":"0.0050203203","62":"0.006215635","63":"0.008845326","64":"0.0031078174","65":"0.0031078174","66":"0.006454698","67":"0.002868754","68":"0.0045421946","69":"0.0040640689","70":"0.009323452","71":"0.0028687545","72":"0.0007171886","73":"0.0026296916","74":"0.0050203203","75":"3.346880e-03","76":"0.0009562515","77":"0.007410949","78":"0.0009562515","79":"0.0026296916","80":"0.0019125030","81":"0.0004781257","82":"0.0011953144","83":"0.0047812575","84":"0.0016734401","85":"0.013865647","86":"1.912503e-03","87":"0.0011953144","88":"0.0000000000","89":"0.017212527","90":"0.0016734401","91":"0.0014343772","92":"0.006693760","93":"0.0023906287","94":"0.0078890748","95":"2.151566e-03","96":"0.0131484580","97":"0.0009562515","98":"0.0009562515","99":"0.0009562515","100":"4.781257e-04"},{"1":"0.0002603489","2":"0.0015620932","3":"0.0007810466","4":"0.0010413955","5":"0.0028638375","6":"0.0088518615","7":"0.007289768","8":"0.004425931","9":"0.0026034887","10":"0.0015620932","11":"0.0005206977","12":"0.0013017443","13":"0.0026034887","14":"0.016141630","15":"0.0020827909","16":"0.0041655819","17":"0.0013017443","18":"0.0005206977","19":"0.0059880240","20":"0.0010413955","21":"0.05389222","22":"0.0023431398","23":"0.0052069773","24":"0.0000000000","25":"3.905233e-03","26":"0.008070815","27":"0.003384535","28":"0.0002603489","29":"0.0039052330","30":"0.0007810466","31":"0.0065087217","32":"0.008331164","33":"0.0026034887","34":"0.0018224421","35":"0.0044259307","36":"4.686280e-03","37":"2.082791e-03","38":"0.0013017443","39":"0.0031241864","40":"0.0010413955","41":"0.004165582","42":"0.0007810466","43":"1.562093e-03","44":"0.020567561","45":"0.0018224421","46":"0.0007810466","47":"0.0023431398","48":"3.644884e-03","49":"0.0057276751","50":"0.0049466285","51":"0.009372559","52":"0.0026034887","53":"0.0039052330","54":"0.0031241864","55":"0.0039052330","56":"0.0031241864","57":"0.005467326","58":"0.003644884","59":"0.007550117","60":"0.0002603489","61":"0.0049466285","62":"0.003644884","63":"0.008851861","64":"0.0039052330","65":"0.0028638375","66":"0.015620932","67":"0.002082791","68":"0.0059880240","69":"0.0039052330","70":"0.006508722","71":"0.0046862796","72":"0.0007810466","73":"0.0020827909","74":"0.0010413955","75":"3.905233e-03","76":"0.0023431398","77":"0.005988024","78":"0.0013017443","79":"0.0054673262","80":"0.0013017443","81":"0.0002603489","82":"0.0002603489","83":"0.0054673262","84":"0.0015620932","85":"0.012236397","86":"2.603489e-04","87":"0.0000000000","88":"0.0005206977","89":"0.011455350","90":"0.0013017443","91":"0.0028638375","92":"0.007810466","93":"0.0020827909","94":"0.0039052330","95":"3.384535e-03","96":"0.0130174434","97":"0.0026034887","98":"0.0007810466","99":"0.0018224421","100":"0.000000e+00"},{"1":"0.0022126773","2":"0.0016920474","3":"0.0016920474","4":"0.0020825198","5":"0.0035142522","6":"0.0092411818","7":"0.008980867","8":"0.005076142","9":"0.0020825198","10":"0.0014317324","11":"0.0010412599","12":"0.0007809449","13":"0.0054666146","14":"0.009371339","15":"0.0041650397","16":"0.0081999219","17":"0.0031237798","18":"0.0015618899","19":"0.0083300794","20":"0.0013015749","21":"0.05466615","22":"0.0022126773","23":"0.0029936223","24":"0.0016920474","25":"3.774567e-03","26":"0.010282442","27":"0.007809449","28":"0.0015618899","29":"0.0003904725","30":"0.0031237798","31":"0.0036444097","32":"0.007549134","33":"0.0014317324","34":"0.0019523624","35":"0.0045555122","36":"2.082520e-03","37":"1.692047e-03","38":"0.0011714174","39":"0.0019523624","40":"0.0011714174","41":"0.009111024","42":"0.0011714174","43":"3.644410e-03","44":"0.011453859","45":"0.0037745672","46":"0.0016920474","47":"0.0019523624","48":"4.555512e-03","49":"0.0046856697","50":"0.0046856697","51":"0.008330079","52":"0.0050761421","53":"0.0033840948","54":"0.0018222049","55":"0.0040348822","56":"0.0040348822","57":"0.005987245","58":"0.005987245","59":"0.007158662","60":"0.0007809449","61":"0.0055967721","62":"0.007679292","63":"0.005596772","64":"0.0037745672","65":"0.0015618899","66":"0.008980867","67":"0.004425355","68":"0.0061174021","69":"0.0058570871","70":"0.010282442","71":"0.0032539373","72":"0.0006507875","73":"0.0024729923","74":"0.0022126773","75":"5.987245e-03","76":"0.0011714174","77":"0.010282442","78":"0.0013015749","79":"0.0019523624","80":"0.0009111024","81":"0.0016920474","82":"0.0014317324","83":"0.0048158272","84":"0.0042951972","85":"0.011714174","86":"3.904725e-04","87":"0.0007809449","88":"0.0003904725","89":"0.002863465","90":"0.0016920474","91":"0.0010412599","92":"0.010933229","93":"0.0018222049","94":"0.0053364571","95":"1.561890e-03","96":"0.0163998438","97":"0.0014317324","98":"0.0018222049","99":"0.0007809449","100":"2.603150e-04"},{"1":"0.0006857143","2":"0.0027428571","3":"0.0010285714","4":"0.0012571429","5":"0.0025142857","6":"0.0037714286","7":"0.011771429","8":"0.004000000","9":"0.0018285714","10":"0.0020571429","11":"0.0016000000","12":"0.0014857143","13":"0.0012571429","14":"0.014400000","15":"0.0046857143","16":"0.0082285714","17":"0.0018285714","18":"0.0019428571","19":"0.0081142857","20":"0.0013714286","21":"0.05257143","22":"0.0022857143","23":"0.0008000000","24":"0.0008000000","25":"7.085714e-03","26":"0.011085714","27":"0.005828571","28":"0.0017142857","29":"0.0000000000","30":"0.0027428571","31":"0.0080000000","32":"0.007657143","33":"0.0025142857","34":"0.0038857143","35":"0.0062857143","36":"2.285714e-04","37":"1.142857e-03","38":"0.0034285714","39":"0.0014857143","40":"0.0020571429","41":"0.007771429","42":"0.0002285714","43":"1.714286e-03","44":"0.002971429","45":"0.0036571429","46":"0.0003428571","47":"0.0010285714","48":"1.028571e-03","49":"0.0032000000","50":"0.0053714286","51":"0.005257143","52":"0.0045714286","53":"0.0044571429","54":"0.0024000000","55":"0.0062857143","56":"0.0017142857","57":"0.005600000","58":"0.004800000","59":"0.003657143","60":"0.0005714286","61":"0.0053714286","62":"0.004914286","63":"0.004342857","64":"0.0028571429","65":"0.0034285714","66":"0.008342857","67":"0.004685714","68":"0.0056000000","69":"0.0046857143","70":"0.009942857","71":"0.0019428571","72":"0.0004571429","73":"0.0033142857","74":"0.0010285714","75":"9.371429e-03","76":"0.0014857143","77":"0.006171429","78":"0.0026285714","79":"0.0033142857","80":"0.0013714286","81":"0.0021714286","82":"0.0009142857","83":"0.0027428571","84":"0.0005714286","85":"0.009600000","86":"4.571429e-04","87":"0.0016000000","88":"0.0004571429","89":"0.004000000","90":"0.0011428571","91":"0.0004571429","92":"0.009600000","93":"0.0022857143","94":"0.0073142857","95":"3.542857e-03","96":"0.0120000000","97":"0.0020571429","98":"0.0005714286","99":"0.0013714286","100":"2.285714e-04"},{"1":"0.0015619368","2":"0.0006007449","3":"0.0014417878","4":"0.0016820858","5":"0.0050462574","6":"0.0085305779","7":"0.008290280","8":"0.014658176","9":"0.0028835756","10":"0.0014417878","11":"0.0004805959","12":"0.0006007449","13":"0.0036044695","14":"0.010332813","15":"0.0055268533","16":"0.0079298330","17":"0.0009611919","18":"0.0043253635","19":"0.0117746005","20":"0.0008410429","21":"0.04998198","22":"0.0009611919","23":"0.0022828307","24":"0.0007208939","25":"4.565661e-03","26":"0.008770876","27":"0.006127598","28":"0.0018022348","29":"0.0014417878","30":"0.0019223838","31":"0.0019223838","32":"0.008049982","33":"0.0020425327","34":"0.0032440226","35":"0.0063678962","36":"2.042533e-03","37":"2.162682e-03","38":"0.0020425327","39":"0.0016820858","40":"0.0021626817","41":"0.007929833","42":"0.0025231287","43":"4.325363e-03","44":"0.003724619","45":"0.0032440226","46":"0.0015619368","47":"0.0045656614","48":"3.364172e-03","49":"0.0050462574","50":"0.0020425327","51":"0.009371621","52":"0.0057671513","53":"0.0030037246","54":"0.0009611919","55":"0.0033641716","56":"0.0016820858","57":"0.006488045","58":"0.005046257","59":"0.009972366","60":"0.0010813409","61":"0.0055268533","62":"0.013696984","63":"0.005166406","64":"0.0050462574","65":"0.0024029797","66":"0.009972366","67":"0.002883576","68":"0.0063678962","69":"0.0056470023","70":"0.009011174","71":"0.0026432777","72":"0.0019223838","73":"0.0020425327","74":"0.0027634266","75":"2.883576e-03","76":"0.0015619368","77":"0.004445512","78":"0.0008410429","79":"0.0028835756","80":"0.0008410429","81":"0.0027634266","82":"0.0018022348","83":"0.0066081942","84":"0.0028835756","85":"0.008770876","86":"4.325363e-03","87":"0.0093716208","88":"0.0014417878","89":"0.006247747","90":"0.0024029797","91":"0.0013216388","92":"0.010332813","93":"0.0012014898","94":"0.0064880452","95":"1.081341e-03","96":"0.0080499820","97":"0.0013216388","98":"0.0025231287","99":"0.0086507269","100":"1.057311e-02"},{"1":"0.0023004875","2":"0.0018622994","3":"0.0016979789","4":"0.0024100345","5":"0.0024100345","6":"0.0078873857","7":"0.007723065","8":"0.003779372","9":"0.0025195815","10":"0.0020266199","11":"0.0019170729","12":"0.0021909405","13":"0.0047105220","14":"0.017910938","15":"0.0044366544","16":"0.0057512187","17":"0.0016432053","18":"0.0024648080","19":"0.0091471764","20":"0.0034507312","21":"0.05082982","22":"0.0027386756","23":"0.0028482226","24":"0.0009311497","25":"5.039163e-03","26":"0.010352194","27":"0.003724599","28":"0.0013145643","29":"0.0021361669","30":"0.0023004875","31":"0.0042723339","32":"0.005805992","33":"0.0021909405","34":"0.0027934491","35":"0.0046009750","36":"2.136167e-03","37":"1.643205e-03","38":"0.0004381881","39":"0.0025195815","40":"0.0024648080","41":"0.008708988","42":"0.0030673166","43":"4.546201e-03","44":"0.004874843","45":"0.0018075259","46":"0.0021909405","47":"0.0027386756","48":"1.588432e-03","49":"0.0047105220","50":"0.0047105220","51":"0.006682368","52":"0.0049843895","53":"0.0034507312","54":"0.0013145643","55":"0.0018622994","56":"0.0047652955","57":"0.011447664","58":"0.008051706","59":"0.014076792","60":"0.0009859232","61":"0.0089828559","62":"0.025469683","63":"0.005422578","64":"0.0059155392","65":"0.0026291286","66":"0.008161253","67":"0.005586898","68":"0.0034507312","69":"0.0052582571","70":"0.010680835","71":"0.0015336583","72":"0.0013693378","73":"0.0020813934","74":"0.0020813934","75":"1.369338e-03","76":"0.0018622994","77":"0.004436654","78":"0.0022457140","79":"0.0030673166","80":"0.0014788848","81":"0.0021361669","82":"0.0013693378","83":"0.0058607657","84":"0.0017527524","85":"0.008928082","86":"6.025086e-04","87":"0.0008216027","88":"0.0030673166","89":"0.006737142","90":"0.0037793723","91":"0.0012597908","92":"0.008270800","93":"0.0010406967","94":"0.0060250863","95":"4.327107e-03","96":"0.0075039711","97":"0.0016432053","98":"0.0017527524","99":"0.0004929616","100":"5.477351e-05"},{"1":"0.0012821540","2":"0.0011218848","3":"0.0010417501","4":"0.0010417501","5":"0.0032053850","6":"0.0074525202","7":"0.008334001","8":"0.012020194","9":"0.0036861928","10":"0.0012020194","11":"0.0017629618","12":"0.0012020194","13":"0.0022437695","14":"0.011138713","15":"0.0026444427","16":"0.0049683468","17":"0.0017629618","18":"0.0016828271","19":"0.0075326549","20":"0.0008013463","21":"0.04671849","22":"0.0016026925","23":"0.0023239042","24":"0.0017629618","25":"5.048481e-03","26":"0.008013463","27":"0.006250501","28":"0.0013622886","29":"0.0008013463","30":"0.0020033657","31":"0.0071319817","32":"0.007452520","33":"0.0012821540","34":"0.0020835003","35":"0.0076127895","36":"3.125250e-03","37":"8.013463e-04","38":"0.0012821540","39":"0.0013622886","40":"0.0024841734","41":"0.010497636","42":"0.0028047119","43":"5.048481e-03","44":"0.003125250","45":"0.0032053850","46":"0.0017629618","47":"0.0034457889","48":"3.445789e-03","49":"0.0058498277","50":"0.0045676737","51":"0.008574405","52":"0.0044074044","53":"0.0032053850","54":"0.0008013463","55":"0.0027245773","56":"0.0030451158","57":"0.005449155","58":"0.006170366","59":"0.007452520","60":"0.0002404039","61":"0.0042471352","62":"0.010738040","63":"0.004888212","64":"0.0026444427","65":"0.0016026925","66":"0.008414136","67":"0.003846462","68":"0.0052888853","69":"0.0047279429","70":"0.008574405","71":"0.0020835003","72":"0.0019232310","73":"0.0022437695","74":"0.0026444427","75":"4.006731e-03","76":"0.0015225579","77":"0.005288885","78":"0.0013622886","79":"0.0029649812","80":"0.0019232310","81":"0.0021636349","82":"0.0020033657","83":"0.0041670006","84":"0.0031252504","85":"0.009856559","86":"5.128616e-03","87":"0.0072121164","88":"0.0014424233","89":"0.012420867","90":"0.0015225579","91":"0.0016828271","92":"0.007933328","93":"0.0012020194","94":"0.0060902316","95":"2.404039e-03","96":"0.0132222133","97":"0.0010417501","98":"0.0007212116","99":"0.0088148089","100":"1.610706e-02"},{"1":"0.0009514386","2":"0.0012178414","3":"0.0013320140","4":"0.0015984168","5":"0.0025117978","6":"0.0091718679","7":"0.007954026","8":"0.002397625","9":"0.0033871213","10":"0.0016745319","11":"0.0019028772","12":"0.0018267621","13":"0.0035012940","14":"0.013472370","15":"0.0036154666","16":"0.0063556097","17":"0.0022073375","18":"0.0012178414","19":"0.0086010047","20":"0.0018267621","21":"0.05605876","22":"0.0021312224","23":"0.0034632364","24":"0.0005328056","25":"3.805754e-03","26":"0.008981580","27":"0.006583955","28":"0.0013700715","29":"0.0025879129","30":"0.0029304308","31":"0.0046810778","32":"0.006850358","33":"0.0012558989","34":"0.0019789922","35":"0.0063936672","36":"3.463236e-03","37":"2.359568e-03","38":"0.0017125894","39":"0.0019028772","40":"0.0019409347","41":"0.006393667","42":"0.0011036687","43":"2.854316e-03","44":"0.005975034","45":"0.0031968336","46":"0.0017887045","47":"0.0044146750","48":"4.719135e-03","49":"0.0050616532","50":"0.0045669052","51":"0.006774243","52":"0.0039960420","53":"0.0031207185","54":"0.0027020856","55":"0.0052138834","56":"0.0033110062","57":"0.006774243","58":"0.004947481","59":"0.006888415","60":"0.0018267621","61":"0.0070025879","62":"0.014005176","63":"0.006431725","64":"0.0044907901","65":"0.0034251789","66":"0.009742731","67":"0.004376617","68":"0.0055564013","69":"0.0043005024","70":"0.009286040","71":"0.0022073375","72":"0.0012178414","73":"0.0012558989","74":"0.0030446034","75":"4.719135e-03","76":"0.0020170498","77":"0.006964530","78":"0.0019409347","79":"0.0045669052","80":"0.0031207185","81":"0.0017887045","82":"0.0007992084","83":"0.0053661136","84":"0.0015223017","85":"0.013320140","86":"1.255899e-03","87":"0.0011036687","88":"0.0011797838","89":"0.006698128","90":"0.0017125894","91":"0.0011036687","92":"0.008144314","93":"0.0011036687","94":"0.0071928756","95":"2.625970e-03","96":"0.0106941696","97":"0.0019789922","98":"0.0007230933","99":"0.0012558989","100":"4.566905e-04"},{"1":"0.0012942192","2":"0.0015818234","3":"0.0012942192","4":"0.0008628128","5":"0.0033074490","6":"0.0092033362","7":"0.008915732","8":"0.012942192","9":"0.0044578660","10":"0.0020132298","11":"0.0002876043","12":"0.0031636468","13":"0.0037388553","14":"0.012942192","15":"0.0044578660","16":"0.0047454702","17":"0.0024446362","18":"0.0020132298","19":"0.0080529192","20":"0.0017256255","21":"0.04644809","22":"0.0011504170","23":"0.0014380213","24":"0.0005752085","25":"3.595053e-03","26":"0.006758700","27":"0.006327294","28":"0.0027322404","29":"0.0021570319","30":"0.0017256255","31":"0.0051768766","32":"0.007477711","33":"0.0023008341","34":"0.0028760426","35":"0.0071901064","36":"2.876043e-03","37":"2.300834e-03","38":"0.0053206787","39":"0.0021570319","40":"0.0027322404","41":"0.007046304","42":"0.0014380213","43":"4.026460e-03","44":"0.004457866","45":"0.0023008341","46":"0.0031636468","47":"0.0037388553","48":"8.628128e-04","49":"0.0044578660","50":"0.0030198447","51":"0.008484326","52":"0.0048892724","53":"0.0025884383","54":"0.0011504170","55":"0.0021570319","56":"0.0021570319","57":"0.009634743","58":"0.002732240","59":"0.005033074","60":"0.0002876043","61":"0.0040264596","62":"0.017831464","63":"0.007046304","64":"0.0028760426","65":"0.0005752085","66":"0.004170262","67":"0.009634743","68":"0.0058958873","69":"0.0051768766","70":"0.010209951","71":"0.0018694277","72":"0.0008628128","73":"0.0038826575","74":"0.0058958873","75":"2.588438e-03","76":"0.0008628128","77":"0.003882657","78":"0.0008628128","79":"0.0018694277","80":"0.0017256255","81":"0.0025884383","82":"0.0023008341","83":"0.0038826575","84":"0.0040264596","85":"0.011216566","86":"3.307449e-03","87":"0.0093471383","88":"0.0005752085","89":"0.011647972","90":"0.0027322404","91":"0.0018694277","92":"0.006327294","93":"0.0021570319","94":"0.0051768766","95":"2.157032e-03","96":"0.0084843256","97":"0.0014380213","98":"0.0012942192","99":"0.0080529192","100":"1.179177e-02"},{"1":"0.0002079002","2":"0.0033264033","3":"0.0010395010","4":"0.0002079002","5":"0.0008316008","6":"0.0037422037","7":"0.009355509","8":"0.002079002","9":"0.0004158004","10":"0.0002079002","11":"0.0010395010","12":"0.0022869023","13":"0.0012474012","14":"0.023076923","15":"0.0054054054","16":"0.0029106029","17":"0.0045738046","18":"0.0012474012","19":"0.0051975052","20":"0.0024948025","21":"0.07068607","22":"0.0014553015","23":"0.0006237006","24":"0.0020790021","25":"2.286902e-03","26":"0.013305613","27":"0.004573805","28":"0.0006237006","29":"0.0000000000","30":"0.0031185031","31":"0.0070686071","32":"0.004158004","33":"0.0022869023","34":"0.0010395010","35":"0.0035343035","36":"0.000000e+00","37":"2.079002e-04","38":"0.0024948025","39":"0.0010395010","40":"0.0018711019","41":"0.004365904","42":"0.0010395010","43":"1.039501e-03","44":"0.001247401","45":"0.0043659044","46":"0.0002079002","47":"0.0008316008","48":"4.158004e-04","49":"0.0010395010","50":"0.0022869023","51":"0.012889813","52":"0.0004158004","53":"0.0016632017","54":"0.0031185031","55":"0.0103950104","56":"0.0066528067","57":"0.003742204","58":"0.001871102","59":"0.006029106","60":"0.0018711019","61":"0.0089397089","62":"0.005405405","63":"0.004989605","64":"0.0095634096","65":"0.0041580042","66":"0.014345114","67":"0.008108108","68":"0.0043659044","69":"0.0035343035","70":"0.006237006","71":"0.0008316008","72":"0.0004158004","73":"0.0010395010","74":"0.0006237006","75":"1.663202e-03","76":"0.0020790021","77":"0.013097713","78":"0.0022869023","79":"0.0008316008","80":"0.0018711019","81":"0.0004158004","82":"0.0022869023","83":"0.0068607069","84":"0.0033264033","85":"0.004989605","86":"4.158004e-04","87":"0.0008316008","88":"0.0006237006","89":"0.003534304","90":"0.0012474012","91":"0.0004158004","92":"0.005197505","93":"0.0031185031","94":"0.0049896050","95":"8.316008e-04","96":"0.0035343035","97":"0.0045738046","98":"0.0002079002","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0019595710","2":"0.0015470297","3":"0.0022689769","4":"0.0008250825","5":"0.0021658416","6":"0.0096947195","7":"0.006394389","8":"0.002475248","9":"0.0030940594","10":"0.0019595710","11":"0.0016501650","12":"0.0009282178","13":"0.0051567657","14":"0.014851485","15":"0.0047442244","16":"0.0090759076","17":"0.0019595710","18":"0.0023721122","19":"0.0122731023","20":"0.0019595710","21":"0.04589521","22":"0.0022689769","23":"0.0035066007","24":"0.0017533003","25":"5.775578e-03","26":"0.010210396","27":"0.005878713","28":"0.0011344884","29":"0.0041254125","30":"0.0027846535","31":"0.0045379538","32":"0.008766502","33":"0.0019595710","34":"0.0037128713","35":"0.0094884488","36":"4.331683e-03","37":"2.578383e-03","38":"0.0012376238","39":"0.0013407591","40":"0.0023721122","41":"0.006703795","42":"0.0014438944","43":"4.537954e-03","44":"0.005156766","45":"0.0020627063","46":"0.0016501650","47":"0.0058787129","48":"3.712871e-03","49":"0.0061881188","50":"0.0039191419","51":"0.005569307","52":"0.0042285479","53":"0.0027846535","54":"0.0022689769","55":"0.0036097360","56":"0.0023721122","57":"0.004434818","58":"0.006188119","59":"0.004744224","60":"0.0014438944","61":"0.0045379538","62":"0.009282178","63":"0.003919142","64":"0.0041254125","65":"0.0015470297","66":"0.008353960","67":"0.003300330","68":"0.0045379538","69":"0.0069100660","70":"0.012685644","71":"0.0014438944","72":"0.0019595710","73":"0.0025783828","74":"0.0028877888","75":"2.372112e-03","76":"0.0013407591","77":"0.005672442","78":"0.0010313531","79":"0.0066006601","80":"0.0006188119","81":"0.0028877888","82":"0.0012376238","83":"0.0054661716","84":"0.0018564356","85":"0.011344884","86":"4.125413e-04","87":"0.0018564356","88":"0.0028877888","89":"0.002887789","90":"0.0036097360","91":"0.0014438944","92":"0.012273102","93":"0.0001031353","94":"0.0046410891","95":"2.268977e-03","96":"0.0118605611","97":"0.0017533003","98":"0.0013407591","99":"0.0009282178","100":"2.062706e-04"},{"1":"0.0025940337","2":"0.0019678877","3":"0.0016100899","4":"0.0018784382","5":"0.0020573371","6":"0.0067534326","7":"0.007737376","8":"0.006172011","9":"0.0025045843","10":"0.0018337135","11":"0.0008497697","12":"0.0027729326","13":"0.0025493090","14":"0.012522921","15":"0.0057247641","16":"0.0049644438","17":"0.0045619214","18":"0.0016100899","19":"0.0096605394","20":"0.0021467865","21":"0.05948388","22":"0.0012522921","23":"0.0019231629","24":"0.0010733933","25":"3.533253e-03","26":"0.008900219","27":"0.005590590","28":"0.0016100899","29":"0.0006708708","30":"0.0024598596","31":"0.0032649045","32":"0.005993112","33":"0.0016548146","34":"0.0027282079","35":"0.0044724719","36":"1.878438e-03","37":"1.654815e-03","38":"0.0014311910","39":"0.0017442641","40":"0.0029071068","41":"0.005814214","42":"0.0019231629","43":"3.130730e-03","44":"0.005188067","45":"0.0026834832","46":"0.0015206405","47":"0.0025940337","48":"9.839438e-04","49":"0.0037568764","50":"0.0045619214","51":"0.010465584","52":"0.0055011405","53":"0.0032649045","54":"0.0023256854","55":"0.0029071068","56":"0.0031754551","57":"0.009794714","58":"0.005322242","59":"0.007469028","60":"0.0025493090","61":"0.0078268259","62":"0.015564202","63":"0.005232792","64":"0.0039357753","65":"0.0024598596","66":"0.008139899","67":"0.007424303","68":"0.0042935731","69":"0.0050538933","70":"0.009436916","71":"0.0016548146","72":"0.0024598596","73":"0.0017442641","74":"0.0021915112","75":"1.654815e-03","76":"0.0033096292","77":"0.007782101","78":"0.0016100899","79":"0.0022362360","80":"0.0008944944","81":"0.0014311910","82":"0.0025045843","83":"0.0054116910","84":"0.0023256854","85":"0.011360079","86":"3.354354e-03","87":"0.0023256854","88":"0.0004919719","89":"0.008989669","90":"0.0021020618","91":"0.0012522921","92":"0.006977056","93":"0.0015653652","94":"0.0070665057","95":"3.622702e-03","96":"0.0073348540","97":"0.0016100899","98":"0.0020573371","99":"0.0007603202","100":"1.091283e-02"},{"1":"0.0015043928","2":"0.0007221086","3":"0.0011433385","4":"0.0022866771","5":"0.0023468528","6":"0.0046937056","7":"0.006378626","8":"0.005235287","9":"0.0021663257","10":"0.0019857985","11":"0.0020459742","12":"0.0028282585","13":"0.0007822843","14":"0.017992538","15":"0.0078830184","16":"0.0033096642","17":"0.0041521242","18":"0.0009628114","19":"0.0041521242","20":"0.0016849200","21":"0.04838127","22":"0.0026477314","23":"0.0021061500","24":"0.0011433385","25":"2.166326e-03","26":"0.013058130","27":"0.005716693","28":"0.0017450957","29":"0.0004212300","30":"0.0018654471","31":"0.0027079071","32":"0.004152124","33":"0.0011433385","34":"0.0013840414","35":"0.0051751113","36":"7.822843e-04","37":"6.017571e-04","38":"0.0024070285","39":"0.0016247443","40":"0.0014442171","41":"0.006619328","42":"0.0009628114","43":"1.263690e-03","44":"0.006438801","45":"0.0045131785","46":"0.0015043928","47":"0.0020459742","48":"1.925623e-03","49":"0.0032494885","50":"0.0031291371","51":"0.017511133","52":"0.0039114214","53":"0.0025875557","54":"0.0020459742","55":"0.0034300156","56":"0.0038512456","57":"0.010350223","58":"0.004453003","59":"0.006799856","60":"0.0011433385","61":"0.0066795042","62":"0.011553737","63":"0.007702491","64":"0.0045733542","65":"0.0024070285","66":"0.009868817","67":"0.006318450","68":"0.0039114214","69":"0.0042122999","70":"0.008364424","71":"0.0012636900","72":"0.0011433385","73":"0.0015043928","74":"0.0012035143","75":"1.083163e-03","76":"0.0020459742","77":"0.008003370","78":"0.0021663257","79":"0.0006619328","80":"0.0018052714","81":"0.0009026357","82":"0.0016849200","83":"0.0036105428","84":"0.0013840414","85":"0.007401613","86":"6.017571e-04","87":"0.0010831628","88":"0.0003610543","89":"0.006619328","90":"0.0019256228","91":"0.0021061500","92":"0.004814057","93":"0.0023468528","94":"0.0085449513","95":"1.624744e-03","96":"0.0069202070","97":"0.0019857985","98":"0.0010831628","99":"0.0004814057","100":"3.008786e-04"},{"1":"0.0010160881","2":"0.0024837708","3":"0.0005080440","4":"0.0036127576","5":"0.0015241321","6":"0.0103866780","7":"0.008241603","8":"0.007169066","9":"0.0030482642","10":"0.0017499294","11":"0.0018063788","12":"0.0022015241","13":"0.0013547841","14":"0.011064070","15":"0.0073948631","16":"0.0029353655","17":"0.0040079029","18":"0.0007338414","19":"0.0056449337","20":"0.0022579735","21":"0.05509455","22":"0.0015241321","23":"0.0033869602","24":"0.0024273215","25":"1.749929e-03","26":"0.012418854","27":"0.004967542","28":"0.0016370308","29":"0.0011854361","30":"0.0053062377","31":"0.0012418854","32":"0.004911092","33":"0.0006773920","34":"0.0014676828","35":"0.0049110923","36":"3.725656e-03","37":"2.201524e-03","38":"0.0014676828","39":"0.0014112334","40":"0.0020321761","41":"0.007959356","42":"0.0019757268","43":"2.991815e-03","44":"0.005532035","45":"0.0041772509","46":"0.0062658764","47":"0.0014112334","48":"1.354784e-03","49":"0.0055320350","50":"0.0045159469","51":"0.009596387","52":"0.0032176122","53":"0.0036127576","54":"0.0042337003","55":"0.0007338414","56":"0.0043465989","57":"0.007338414","58":"0.004177251","59":"0.008128704","60":"0.0037256562","61":"0.0084674005","62":"0.020039515","63":"0.005306238","64":"0.0053626870","65":"0.0015241321","66":"0.010499577","67":"0.005193339","68":"0.0038385549","69":"0.0024837708","70":"0.007677110","71":"0.0009596387","72":"0.0002822467","73":"0.0041772509","74":"0.0012983347","75":"6.773920e-04","76":"0.0011854361","77":"0.009878634","78":"0.0016370308","79":"0.0007338414","80":"0.0005644934","81":"0.0010160881","82":"0.0023708721","83":"0.0020321761","84":"0.0067174711","85":"0.006604572","86":"4.515947e-04","87":"0.0014112334","88":"0.0028789162","89":"0.003048264","90":"0.0016370308","91":"0.0016370308","92":"0.003669207","93":"0.0005080440","94":"0.0064916737","95":"5.644934e-04","96":"0.0089754445","97":"0.0005644934","98":"0.0021450748","99":"0.0001693480","100":"0.000000e+00"},{"1":"0.0013679891","2":"0.0014819881","3":"0.0019379845","4":"0.0014819881","5":"0.0015959872","6":"0.0038189694","7":"0.008492932","8":"0.006041952","9":"0.0021089831","10":"0.0014249886","11":"0.0009119927","12":"0.0020519836","13":"0.0025649795","14":"0.016529868","15":"0.0029639763","16":"0.0078089375","17":"0.0037049704","18":"0.0010259918","19":"0.0092339261","20":"0.0011399909","21":"0.05745554","22":"0.0018809850","23":"0.0015389877","24":"0.0013109895","25":"3.647971e-03","26":"0.010487916","27":"0.005414957","28":"0.0009119927","29":"0.0006269950","30":"0.0025649795","31":"0.0056429549","32":"0.005927953","33":"0.0015389877","34":"0.0011399909","35":"0.0049589603","36":"1.538988e-03","37":"8.549932e-04","38":"0.0022229822","39":"0.0025079799","40":"0.0024509804","41":"0.008093935","42":"0.0012539900","43":"1.709986e-03","44":"0.005300958","45":"0.0046739626","46":"0.0007409941","47":"0.0031349749","48":"3.020976e-03","49":"0.0041609667","50":"0.0050729594","51":"0.009518924","52":"0.0050159599","53":"0.0026219790","54":"0.0021659827","55":"0.0039329685","56":"0.0031349749","57":"0.006212950","58":"0.005129959","59":"0.007295942","60":"0.0011399909","61":"0.0070109439","62":"0.012140903","63":"0.006041952","64":"0.0030209758","65":"0.0020519836","66":"0.011456908","67":"0.004502964","68":"0.0043319653","69":"0.0042179663","70":"0.009860921","71":"0.0023939808","72":"0.0027359781","73":"0.0018809850","74":"0.0013109895","75":"4.958960e-03","76":"0.0010259918","77":"0.006383949","78":"0.0026789786","79":"0.0039329685","80":"0.0017099863","81":"0.0018239854","82":"0.0017099863","83":"0.0036479708","84":"0.0026789786","85":"0.009689922","86":"1.082991e-03","87":"0.0037049704","88":"0.0011969904","89":"0.007637939","90":"0.0018239854","91":"0.0009119927","92":"0.008663931","93":"0.0024509804","94":"0.0063839489","95":"3.875969e-03","96":"0.0076949384","97":"0.0010829913","98":"0.0004559964","99":"0.0051869585","100":"7.295942e-03"},{"1":"0.0016940180","2":"0.0005293806","3":"0.0017998941","4":"0.0009528851","5":"0.0021175225","6":"0.0089994706","7":"0.008787718","8":"0.011328745","9":"0.0037056644","10":"0.0020116464","11":"0.0008470090","12":"0.0013763896","13":"0.0023292747","14":"0.015669666","15":"0.0043409211","16":"0.0041291689","17":"0.0025410270","18":"0.0010587612","19":"0.0093170990","20":"0.0016940180","21":"0.04912652","22":"0.0023292747","23":"0.0029645315","24":"0.0009528851","25":"3.917417e-03","26":"0.008787718","27":"0.006881948","28":"0.0010587612","29":"0.0013763896","30":"0.0027527792","31":"0.0039174166","32":"0.008152462","33":"0.0019057702","34":"0.0008470090","35":"0.0055055585","36":"2.646903e-03","37":"1.482266e-03","38":"0.0013763896","39":"0.0021175225","40":"0.0030704076","41":"0.007623081","42":"0.0009528851","43":"3.811540e-03","44":"0.002329275","45":"0.0042350450","46":"0.0026469031","47":"0.0027527792","48":"2.223399e-03","49":"0.0055055585","50":"0.0028586554","51":"0.008893594","52":"0.0053996824","53":"0.0029645315","54":"0.0014822657","55":"0.0045526734","56":"0.0039174166","57":"0.009740603","58":"0.005929063","59":"0.003917417","60":"0.0004235045","61":"0.0058231869","62":"0.015775543","63":"0.006352567","64":"0.0027527792","65":"0.0022233986","66":"0.006458444","67":"0.006140815","68":"0.0068819481","69":"0.0077289571","70":"0.007940709","71":"0.0016940180","72":"0.0013763896","73":"0.0021175225","74":"0.0034939121","75":"2.646903e-03","76":"0.0006352567","77":"0.005187930","78":"0.0016940180","79":"0.0012705135","80":"0.0014822657","81":"0.0019057702","82":"0.0013763896","83":"0.0047644256","84":"0.0013763896","85":"0.011858126","86":"2.858655e-03","87":"0.0077289571","88":"0.0012705135","89":"0.012493383","90":"0.0020116464","91":"0.0024351509","92":"0.007940709","93":"0.0010587612","94":"0.0052938062","95":"2.223399e-03","96":"0.0097406035","97":"0.0008470090","98":"0.0009528851","99":"0.0078348332","100":"1.259926e-02"},{"1":"0.0013837638","2":"0.0010378229","3":"0.0015567343","4":"0.0023062731","5":"0.0025369004","6":"0.0037476937","7":"0.010724170","8":"0.005362085","9":"0.0011531365","10":"0.0012684502","11":"0.0015567343","12":"0.0024792435","13":"0.0013837638","14":"0.015970941","15":"0.0055927122","16":"0.0047855166","17":"0.0032864391","18":"0.0014990775","19":"0.0064575646","20":"0.0019603321","21":"0.06428736","22":"0.0020179889","23":"0.0017297048","24":"0.0014414207","25":"3.690037e-03","26":"0.009686347","27":"0.005189114","28":"0.0016720480","29":"0.0001729705","30":"0.0021909594","31":"0.0044395756","32":"0.006053967","33":"0.0012684502","34":"0.0019026753","35":"0.0049008303","36":"2.306273e-04","37":"7.495387e-04","38":"0.0033440959","39":"0.0021333026","40":"0.0014414207","41":"0.008014299","42":"0.0014990775","43":"2.017989e-03","44":"0.004439576","45":"0.0031711255","46":"0.0009225092","47":"0.0009225092","48":"1.499077e-03","49":"0.0023639299","50":"0.0031711255","51":"0.008936808","52":"0.0028828413","53":"0.0033440959","54":"0.0021909594","55":"0.0032287823","56":"0.0046702030","57":"0.008417897","58":"0.003747694","59":"0.006169280","60":"0.0014990775","61":"0.0062269373","62":"0.010954797","63":"0.011473708","64":"0.0042666052","65":"0.0021333026","66":"0.009282749","67":"0.005131458","68":"0.0042089483","69":"0.0051891144","70":"0.008763838","71":"0.0014414207","72":"0.0010378229","73":"0.0014990775","74":"0.0009801661","75":"4.035978e-03","76":"0.0019603321","77":"0.007668358","78":"0.0039206642","79":"0.0019603321","80":"0.0012107934","81":"0.0014990775","82":"0.0017297048","83":"0.0042089483","84":"0.0011531365","85":"0.007207103","86":"8.648524e-04","87":"0.0031134686","88":"0.0006342251","89":"0.008071956","90":"0.0018450185","91":"0.0011531365","92":"0.007091790","93":"0.0026522140","94":"0.0066305351","95":"3.171125e-03","96":"0.0057080258","97":"0.0012684502","98":"0.0005189114","99":"0.0019026753","100":"5.362085e-03"},{"1":"0.0026196608","2":"0.0019980464","3":"0.0020868484","4":"0.0031968742","5":"0.0029304680","6":"0.0073261700","7":"0.008791404","8":"0.003640884","9":"0.0030192700","10":"0.0028416659","11":"0.0011100258","12":"0.0016872391","13":"0.0023976556","14":"0.015362756","15":"0.0071929669","16":"0.0046177071","17":"0.0030192700","18":"0.0014652340","19":"0.0081697895","20":"0.0021312494","21":"0.05017316","22":"0.0017760412","23":"0.0024420567","24":"0.0009324216","25":"3.152473e-03","26":"0.012965101","27":"0.009102211","28":"0.0022644525","29":"0.0015984371","30":"0.0025308587","31":"0.0019980464","32":"0.006482550","33":"0.0015984371","34":"0.0026196608","35":"0.0067489566","36":"2.486458e-03","37":"1.420833e-03","38":"0.0027972649","39":"0.0025752597","40":"0.0025308587","41":"0.007414972","42":"0.0027972649","43":"2.530859e-03","44":"0.006260545","45":"0.0035076814","46":"0.0020868484","47":"0.0014652340","48":"1.509635e-03","49":"0.0057721339","50":"0.0031080721","51":"0.012299085","52":"0.0072373679","53":"0.0036408845","54":"0.0016872391","55":"0.0016872391","56":"0.0021756505","57":"0.005905337","58":"0.004662108","59":"0.007370571","60":"0.0011988278","61":"0.0063049463","62":"0.014696741","63":"0.004795311","64":"0.0030192700","65":"0.0023976556","66":"0.007814581","67":"0.005594530","68":"0.0046177071","69":"0.0046177071","70":"0.009146612","71":"0.0028860670","72":"0.0031968742","73":"0.0018204422","74":"0.0027528639","75":"1.820442e-03","76":"0.0016428381","77":"0.007725779","78":"0.0013764319","79":"0.0013764319","80":"0.0015096350","81":"0.0012432288","82":"0.0015540361","83":"0.0034632803","84":"0.0021312494","85":"0.011633070","86":"1.376432e-03","87":"0.0011100258","88":"0.0012876299","89":"0.005594530","90":"0.0036408845","91":"0.0027528639","92":"0.005550129","93":"0.0009324216","94":"0.0070153628","95":"2.086848e-03","96":"0.0096350235","97":"0.0033300773","98":"0.0020424474","99":"0.0005328124","100":"3.552082e-04"},{"1":"0.0000000000","2":"0.0000000000","3":"0.0017014037","4":"0.0000000000","5":"0.0038281582","6":"0.0017014037","7":"0.010633773","8":"0.003402807","9":"0.0012760527","10":"0.0000000000","11":"0.0012760527","12":"0.0025521055","13":"0.0000000000","14":"0.029349213","15":"0.0008507018","16":"0.0029774564","17":"0.0110591238","18":"0.0012760527","19":"0.0004253509","20":"0.0025521055","21":"0.05954913","22":"0.0000000000","23":"0.0008507018","24":"0.0021267546","25":"4.678860e-03","26":"0.011909826","27":"0.001276053","28":"0.0000000000","29":"0.0000000000","30":"0.0017014037","31":"0.0055295619","32":"0.004678860","33":"0.0021267546","34":"0.0008507018","35":"0.0085070183","36":"0.000000e+00","37":"0.000000e+00","38":"0.0025521055","39":"0.0004253509","40":"0.0017014037","41":"0.004678860","42":"0.0008507018","43":"4.253509e-04","44":"0.007656316","45":"0.0051042110","46":"0.0021267546","47":"0.0008507018","48":"2.977456e-03","49":"0.0025521055","50":"0.0051042110","51":"0.006380264","52":"0.0034028073","53":"0.0025521055","54":"0.0008507018","55":"0.0038281582","56":"0.0055295619","57":"0.012335177","58":"0.002126755","59":"0.008507018","60":"0.0025521055","61":"0.0127605274","62":"0.011484475","63":"0.009783071","64":"0.0131858783","65":"0.0034028073","66":"0.011059124","67":"0.005104211","68":"0.0055295619","69":"0.0012760527","70":"0.004253509","71":"0.0012760527","72":"0.0000000000","73":"0.0008507018","74":"0.0000000000","75":"1.701404e-03","76":"0.0025521055","77":"0.004678860","78":"0.0029774564","79":"0.0021267546","80":"0.0000000000","81":"0.0012760527","82":"0.0004253509","83":"0.0059549128","84":"0.0000000000","85":"0.004253509","86":"0.000000e+00","87":"0.0012760527","88":"0.0004253509","89":"0.006805615","90":"0.0008507018","91":"0.0000000000","92":"0.003402807","93":"0.0004253509","94":"0.0068056146","95":"4.253509e-04","96":"0.0063802637","97":"0.0000000000","98":"0.0000000000","99":"0.0000000000","100":"1.276053e-03"},{"1":"0.0012894907","2":"0.0012894907","3":"0.0012894907","4":"0.0025789813","5":"0.0006447453","6":"0.0045132173","7":"0.005802708","8":"0.005157963","9":"0.0038684720","10":"0.0012894907","11":"0.0019342360","12":"0.0012894907","13":"0.0000000000","14":"0.019987105","15":"0.0148291425","16":"0.0045132173","17":"0.0012894907","18":"0.0019342360","19":"0.0116054159","20":"0.0019342360","21":"0.05093488","22":"0.0032237266","23":"0.0006447453","24":"0.0025789813","25":"4.513217e-03","26":"0.010960671","27":"0.006447453","28":"0.0006447453","29":"0.0000000000","30":"0.0051579626","31":"0.0006447453","32":"0.003868472","33":"0.0051579626","34":"0.0012894907","35":"0.0058027079","36":"6.447453e-04","37":"0.000000e+00","38":"0.0006447453","39":"0.0000000000","40":"0.0025789813","41":"0.001289491","42":"0.0025789813","43":"0.000000e+00","44":"0.007092199","45":"0.0083816892","46":"0.0025789813","47":"0.0019342360","48":"1.934236e-03","49":"0.0012894907","50":"0.0051579626","51":"0.005802708","52":"0.0012894907","53":"0.0064474533","54":"0.0019342360","55":"0.0077369439","56":"0.0032237266","57":"0.005802708","58":"0.001289491","59":"0.009671180","60":"0.0045132173","61":"0.0109606705","62":"0.019987105","63":"0.005157963","64":"0.0077369439","65":"0.0038684720","66":"0.010315925","67":"0.004513217","68":"0.0038684720","69":"0.0025789813","70":"0.004513217","71":"0.0019342360","72":"0.0000000000","73":"0.0019342360","74":"0.0006447453","75":"2.578981e-03","76":"0.0006447453","77":"0.001934236","78":"0.0012894907","79":"0.0006447453","80":"0.0000000000","81":"0.0038684720","82":"0.0006447453","83":"0.0025789813","84":"0.0019342360","85":"0.008381689","86":"6.447453e-04","87":"0.0000000000","88":"0.0019342360","89":"0.005157963","90":"0.0025789813","91":"0.0012894907","92":"0.005157963","93":"0.0012894907","94":"0.0109606705","95":"1.934236e-03","96":"0.0058027079","97":"0.0000000000","98":"0.0000000000","99":"0.0000000000","100":"1.934236e-03"},{"1":"0.0022026432","2":"0.0033039648","3":"0.0000000000","4":"0.0055066079","5":"0.0011013216","6":"0.0055066079","7":"0.013215859","8":"0.006607930","9":"0.0033039648","10":"0.0011013216","11":"0.0044052863","12":"0.0000000000","13":"0.0000000000","14":"0.020925110","15":"0.0033039648","16":"0.0154185022","17":"0.0011013216","18":"0.0033039648","19":"0.0011013216","20":"0.0000000000","21":"0.03524229","22":"0.0000000000","23":"0.0000000000","24":"0.0000000000","25":"0.000000e+00","26":"0.016519824","27":"0.015418502","28":"0.0000000000","29":"0.0000000000","30":"0.0011013216","31":"0.0044052863","32":"0.017621145","33":"0.0033039648","34":"0.0022026432","35":"0.0143171806","36":"0.000000e+00","37":"0.000000e+00","38":"0.0044052863","39":"0.0000000000","40":"0.0011013216","41":"0.006607930","42":"0.0000000000","43":"0.000000e+00","44":"0.025330396","45":"0.0000000000","46":"0.0110132159","47":"0.0000000000","48":"2.202643e-03","49":"0.0088105727","50":"0.0011013216","51":"0.002202643","52":"0.0022026432","53":"0.0044052863","54":"0.0066079295","55":"0.0121145374","56":"0.0066079295","57":"0.001101322","58":"0.007709251","59":"0.003303965","60":"0.0000000000","61":"0.0011013216","62":"0.006607930","63":"0.003303965","64":"0.0066079295","65":"0.0011013216","66":"0.014317181","67":"0.000000000","68":"0.0033039648","69":"0.0044052863","70":"0.016519824","71":"0.0055066079","72":"0.0000000000","73":"0.0000000000","74":"0.0011013216","75":"0.000000e+00","76":"0.0000000000","77":"0.001101322","78":"0.0000000000","79":"0.0099118943","80":"0.0000000000","81":"0.0055066079","82":"0.0011013216","83":"0.0110132159","84":"0.0000000000","85":"0.008810573","86":"0.000000e+00","87":"0.0000000000","88":"0.0099118943","89":"0.003303965","90":"0.0000000000","91":"0.0011013216","92":"0.005506608","93":"0.0000000000","94":"0.0110132159","95":"0.000000e+00","96":"0.0011013216","97":"0.0143171806","98":"0.0000000000","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0000000000","2":"0.0052790347","3":"0.0090497738","4":"0.0007541478","5":"0.0007541478","6":"0.0037707391","7":"0.012820513","8":"0.012066365","9":"0.0052790347","10":"0.0007541478","11":"0.0052790347","12":"0.0022624434","13":"0.0007541478","14":"0.008295626","15":"0.0000000000","16":"0.0188536953","17":"0.0000000000","18":"0.0007541478","19":"0.0037707391","20":"0.0007541478","21":"0.03996983","22":"0.0015082956","23":"0.0000000000","24":"0.0000000000","25":"3.770739e-03","26":"0.013574661","27":"0.012820513","28":"0.0045248869","29":"0.0015082956","30":"0.0007541478","31":"0.0075414781","32":"0.015837104","33":"0.0022624434","34":"0.0015082956","35":"0.0196078431","36":"2.262443e-03","37":"7.541478e-04","38":"0.0030165913","39":"0.0007541478","40":"0.0022624434","41":"0.013574661","42":"0.0000000000","43":"0.000000e+00","44":"0.002262443","45":"0.0007541478","46":"0.0158371041","47":"0.0045248869","48":"3.016591e-03","49":"0.0075414781","50":"0.0007541478","51":"0.003770739","52":"0.0007541478","53":"0.0067873303","54":"0.0022624434","55":"0.0052790347","56":"0.0180995475","57":"0.012066365","58":"0.004524887","59":"0.001508296","60":"0.0007541478","61":"0.0007541478","62":"0.003770739","63":"0.003016591","64":"0.0000000000","65":"0.0000000000","66":"0.005279035","67":"0.001508296","68":"0.0052790347","69":"0.0045248869","70":"0.010558069","71":"0.0007541478","72":"0.0000000000","73":"0.0022624434","74":"0.0007541478","75":"3.016591e-03","76":"0.0000000000","77":"0.002262443","78":"0.0000000000","79":"0.0075414781","80":"0.0007541478","81":"0.0000000000","82":"0.0007541478","83":"0.0000000000","84":"0.0000000000","85":"0.015837104","86":"0.000000e+00","87":"0.0022624434","88":"0.0060331825","89":"0.015837104","90":"0.0015082956","91":"0.0007541478","92":"0.007541478","93":"0.0030165913","94":"0.0052790347","95":"1.508296e-03","96":"0.0000000000","97":"0.0045248869","98":"0.0000000000","99":"0.0000000000","100":"2.564103e-02"},{"1":"0.0011082964","2":"0.0033248892","3":"0.0006333122","4":"0.0014249525","5":"0.0004749842","6":"0.0053831539","7":"0.009024699","8":"0.008391387","9":"0.0015832806","10":"0.0007916403","11":"0.0044331856","12":"0.0022165928","13":"0.0006333122","14":"0.022957568","15":"0.0088663711","16":"0.0026915769","17":"0.0037998733","18":"0.0022165928","19":"0.0061747942","20":"0.0055414820","21":"0.05731476","22":"0.0022165928","23":"0.0006333122","24":"0.0020582647","25":"7.916403e-04","26":"0.013774541","27":"0.005066498","28":"0.0006333122","29":"0.0003166561","30":"0.0033248892","31":"0.0017416086","32":"0.005383154","33":"0.0014249525","34":"0.0018999367","35":"0.0044331856","36":"0.000000e+00","37":"3.166561e-04","38":"0.0014249525","39":"0.0006333122","40":"0.0014249525","41":"0.003008233","42":"0.0030082331","43":"3.166561e-04","44":"0.004749842","45":"0.0037998733","46":"0.0011082964","47":"0.0007916403","48":"1.583281e-04","49":"0.0007916403","50":"0.0044331856","51":"0.020424319","52":"0.0011082964","53":"0.0058581381","54":"0.0047498417","55":"0.0036415453","56":"0.0025332489","57":"0.005224826","58":"0.004274858","59":"0.007441419","60":"0.0015832806","61":"0.0058581381","62":"0.018366054","63":"0.006966434","64":"0.0068081064","65":"0.0011082964","66":"0.011874604","67":"0.003483217","68":"0.0030082331","69":"0.0015832806","70":"0.009341355","71":"0.0003166561","72":"0.0006333122","73":"0.0034832172","74":"0.0001583281","75":"1.583281e-04","76":"0.0022165928","77":"0.005699810","78":"0.0015832806","79":"0.0015832806","80":"0.0003166561","81":"0.0014249525","82":"0.0023749208","83":"0.0037998733","84":"0.0044331856","85":"0.003324889","86":"3.166561e-04","87":"0.0007916403","88":"0.0015832806","89":"0.003958201","90":"0.0028499050","91":"0.0012666244","92":"0.004116529","93":"0.0001583281","94":"0.0091830272","95":"4.749842e-04","96":"0.0020582647","97":"0.0017416086","98":"0.0007916403","99":"0.0003166561","100":"0.000000e+00"},{"1":"0.0005567929","2":"0.0012991834","3":"0.0018559762","4":"0.0009279881","5":"0.0025983667","6":"0.0096510765","7":"0.005567929","8":"0.007795100","9":"0.0035263549","10":"0.0011135857","11":"0.0005567929","12":"0.0018559762","13":"0.0061247216","14":"0.009465479","15":"0.0011135857","16":"0.0137342242","17":"0.0014847810","18":"0.0070527097","19":"0.0168893838","20":"0.0011135857","21":"0.04491463","22":"0.0007423905","23":"0.0001855976","24":"0.0000000000","25":"1.855976e-03","26":"0.010207869","27":"0.005939124","28":"0.0038975501","29":"0.0007423905","30":"0.0016703786","31":"0.0040831477","32":"0.005382331","33":"0.0020415739","34":"0.0037119525","35":"0.0072383073","36":"5.567929e-03","37":"1.299183e-03","38":"0.0003711952","39":"0.0020415739","40":"0.0037119525","41":"0.005567929","42":"0.0016703786","43":"1.855976e-03","44":"0.004268745","45":"0.0137342242","46":"0.0014847810","47":"0.0029695620","48":"2.041574e-03","49":"0.0037119525","50":"0.0092798812","51":"0.007980698","52":"0.0059391240","53":"0.0040831477","54":"0.0042687454","55":"0.0029695620","56":"0.0057535264","57":"0.008166295","58":"0.006124722","59":"0.010950260","60":"0.0020415739","61":"0.0070527097","62":"0.008537491","63":"0.005196733","64":"0.0025983667","65":"0.0014847810","66":"0.013177431","67":"0.002783964","68":"0.0027839644","69":"0.0038975501","70":"0.024313289","71":"0.0012991834","72":"0.0005567929","73":"0.0033407572","74":"0.0037119525","75":"2.412769e-03","76":"0.0014847810","77":"0.003155160","78":"0.0003711952","79":"0.0022271715","80":"0.0003711952","81":"0.0020415739","82":"0.0012991834","83":"0.0033407572","84":"0.0081662955","85":"0.011507053","86":"5.567929e-04","87":"0.0020415739","88":"0.0001855976","89":"0.008166295","90":"0.0007423905","91":"0.0016703786","92":"0.005011136","93":"0.0005567929","94":"0.0055679287","95":"3.711952e-03","96":"0.0033407572","97":"0.0012991834","98":"0.0000000000","99":"0.0033407572","100":"7.423905e-03"},{"1":"0.0000000000","2":"0.0000000000","3":"0.0000000000","4":"0.0010917031","5":"0.0010917031","6":"0.0032751092","7":"0.013100437","8":"0.003275109","9":"0.0010917031","10":"0.0000000000","11":"0.0000000000","12":"0.0043668122","13":"0.0000000000","14":"0.009825328","15":"0.0065502183","16":"0.0000000000","17":"0.0043668122","18":"0.0000000000","19":"0.0043668122","20":"0.0043668122","21":"0.06441048","22":"0.0000000000","23":"0.0010917031","24":"0.0010917031","25":"1.091703e-03","26":"0.005458515","27":"0.000000000","28":"0.0021834061","29":"0.0000000000","30":"0.0010917031","31":"0.0010917031","32":"0.002183406","33":"0.0021834061","34":"0.0000000000","35":"0.0010917031","36":"1.091703e-03","37":"0.000000e+00","38":"0.0010917031","39":"0.0021834061","40":"0.0000000000","41":"0.007641921","42":"0.0010917031","43":"5.458515e-03","44":"0.003275109","45":"0.0120087336","46":"0.0010917031","47":"0.0000000000","48":"2.183406e-03","49":"0.0032751092","50":"0.0010917031","51":"0.009825328","52":"0.0054585153","53":"0.0054585153","54":"0.0021834061","55":"0.0000000000","56":"0.0065502183","57":"0.009825328","58":"0.000000000","59":"0.014192140","60":"0.0076419214","61":"0.0098253275","62":"0.008733624","63":"0.010917031","64":"0.0087336245","65":"0.0010917031","66":"0.014192140","67":"0.003275109","68":"0.0000000000","69":"0.0010917031","70":"0.006550218","71":"0.0000000000","72":"0.0000000000","73":"0.0032751092","74":"0.0000000000","75":"0.000000e+00","76":"0.0054585153","77":"0.004366812","78":"0.0010917031","79":"0.0010917031","80":"0.0000000000","81":"0.0021834061","82":"0.0000000000","83":"0.0065502183","84":"0.0032751092","85":"0.010917031","86":"0.000000e+00","87":"0.0032751092","88":"0.0010917031","89":"0.004366812","90":"0.0010917031","91":"0.0010917031","92":"0.000000000","93":"0.0010917031","94":"0.0076419214","95":"1.091703e-03","96":"0.0098253275","97":"0.0010917031","98":"0.0000000000","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0016549844","2":"0.0019470405","3":"0.0007788162","4":"0.0024338006","5":"0.0028232087","6":"0.0115848910","7":"0.007885514","8":"0.007009346","9":"0.0036993769","10":"0.0020443925","11":"0.0017523364","12":"0.0018496885","13":"0.0026285047","14":"0.012071651","15":"0.0034073209","16":"0.0072040498","17":"0.0061331776","18":"0.0006814642","19":"0.0050623053","20":"0.0018496885","21":"0.04711838","22":"0.0013629283","23":"0.0057437695","24":"0.0002920561","25":"2.433801e-03","26":"0.009151090","27":"0.005549065","28":"0.0002920561","29":"0.0078855140","30":"0.0024338006","31":"0.0042834891","32":"0.010124611","33":"0.0022390966","34":"0.0013629283","35":"0.0098325545","36":"5.354361e-03","37":"4.088785e-03","38":"0.0009735202","39":"0.0016549844","40":"0.0017523364","41":"0.009053738","42":"0.0005841121","43":"3.115265e-03","44":"0.007496106","45":"0.0045755452","46":"0.0046728972","47":"0.0043808411","48":"4.380841e-03","49":"0.0088590343","50":"0.0029205607","51":"0.008761682","52":"0.0037967290","53":"0.0015576324","54":"0.0019470405","55":"0.0040887850","56":"0.0026285047","57":"0.006327882","58":"0.004770249","59":"0.011195483","60":"0.0007788162","61":"0.0050623053","62":"0.010124611","63":"0.004575545","64":"0.0029205607","65":"0.0028232087","66":"0.010319315","67":"0.003894081","68":"0.0048676012","69":"0.0064252336","70":"0.010416667","71":"0.0014602804","72":"0.0017523364","73":"0.0017523364","74":"0.0060358255","75":"3.407321e-03","76":"0.0007788162","77":"0.007301402","78":"0.0016549844","79":"0.0013629283","80":"0.0010708723","81":"0.0007788162","82":"0.0012655763","83":"0.0029205607","84":"0.0009735202","85":"0.009735202","86":"1.752336e-03","87":"0.0013629283","88":"0.0019470405","89":"0.008177570","90":"0.0015576324","91":"0.0025311526","92":"0.010514019","93":"0.0010708723","94":"0.0055490654","95":"2.044393e-03","96":"0.0087616822","97":"0.0018496885","98":"0.0014602804","99":"0.0013629283","100":"9.735202e-05"},{"1":"0.0006058158","2":"0.0032310178","3":"0.0006058158","4":"0.0018174475","5":"0.0002019386","6":"0.0008077544","7":"0.005654281","8":"0.004846527","9":"0.0012116317","10":"0.0002019386","11":"0.0008077544","12":"0.0010096931","13":"0.0000000000","14":"0.032310178","15":"0.0092891761","16":"0.0006058158","17":"0.0066639742","18":"0.0006058158","19":"0.0024232633","20":"0.0070678514","21":"0.05169628","22":"0.0014135703","23":"0.0000000000","24":"0.0012116317","25":"2.019386e-04","26":"0.016357027","27":"0.001413570","28":"0.0006058158","29":"0.0000000000","30":"0.0052504039","31":"0.0006058158","32":"0.001413570","33":"0.0000000000","34":"0.0010096931","35":"0.0006058158","36":"0.000000e+00","37":"2.019386e-04","38":"0.0010096931","39":"0.0012116317","40":"0.0010096931","41":"0.004240711","42":"0.0032310178","43":"0.000000e+00","44":"0.009693053","45":"0.0090872375","46":"0.0002019386","47":"0.0006058158","48":"2.019386e-04","49":"0.0004038772","50":"0.0018174475","51":"0.016962843","52":"0.0016155089","53":"0.0006058158","54":"0.0010096931","55":"0.0054523425","56":"0.0066639742","57":"0.007067851","58":"0.002221325","59":"0.017972536","60":"0.0040387722","61":"0.0113085622","62":"0.016357027","63":"0.009289176","64":"0.0127221325","65":"0.0030290792","66":"0.019789984","67":"0.007471729","68":"0.0008077544","69":"0.0008077544","70":"0.002019386","71":"0.0006058158","72":"0.0002019386","73":"0.0004038772","74":"0.0000000000","75":"2.019386e-04","76":"0.0060581583","77":"0.009894992","78":"0.0050484653","79":"0.0004038772","80":"0.0000000000","81":"0.0002019386","82":"0.0028271405","83":"0.0026252019","84":"0.0008077544","85":"0.001009693","86":"0.000000e+00","87":"0.0066639742","88":"0.0004038772","89":"0.003029079","90":"0.0004038772","91":"0.0004038772","92":"0.003029079","93":"0.0034329564","94":"0.0042407108","95":"4.038772e-04","96":"0.0018174475","97":"0.0008077544","98":"0.0004038772","99":"0.0000000000","100":"2.019386e-04"},{"1":"0.0021291696","2":"0.0011828720","3":"0.0018925952","4":"0.0022474568","5":"0.0050863497","6":"0.0118287201","7":"0.009936125","8":"0.003430329","9":"0.0026023184","10":"0.0022474568","11":"0.0004731488","12":"0.0021291696","13":"0.0037851904","14":"0.008280104","15":"0.0036669032","16":"0.0063875089","17":"0.0027206056","18":"0.0031937544","19":"0.0133664537","20":"0.0011828720","21":"0.05027206","22":"0.0022474568","23":"0.0040217648","24":"0.0005914360","25":"4.731488e-03","26":"0.008753253","27":"0.004494914","28":"0.0021291696","29":"0.0009462976","30":"0.0030754672","31":"0.0028388928","32":"0.009817838","33":"0.0015377336","34":"0.0023657440","35":"0.0053229241","36":"2.365744e-03","37":"1.892595e-03","38":"0.0004731488","39":"0.0021291696","40":"0.0034303288","41":"0.006505796","42":"0.0030754672","43":"3.548616e-03","44":"0.004140052","45":"0.0033120416","46":"0.0023657440","47":"0.0031937544","48":"4.021765e-03","49":"0.0054412113","50":"0.0049680625","51":"0.007333806","52":"0.0054412113","53":"0.0020108824","54":"0.0011828720","55":"0.0041400520","56":"0.0029571800","57":"0.003548616","58":"0.007215519","59":"0.007333806","60":"0.0008280104","61":"0.0033120416","62":"0.020581973","63":"0.003785190","64":"0.0029571800","65":"0.0020108824","66":"0.008871540","67":"0.004021765","68":"0.0054412113","69":"0.0062692217","70":"0.010882423","71":"0.0022474568","72":"0.0030754672","73":"0.0022474568","74":"0.0034303288","75":"4.021765e-03","76":"0.0013011592","77":"0.004140052","78":"0.0014194464","79":"0.0042583392","80":"0.0011828720","81":"0.0011828720","82":"0.0021291696","83":"0.0036669032","84":"0.0020108824","85":"0.012538443","86":"1.064585e-03","87":"0.0016560208","88":"0.0021291696","89":"0.004140052","90":"0.0055594985","91":"0.0010645848","92":"0.010764135","93":"0.0026023184","94":"0.0065057961","95":"2.010882e-03","96":"0.0190442394","97":"0.0009462976","98":"0.0021291696","99":"0.0015377336","100":"3.548616e-04"},{"1":"0.0013551805","2":"0.0023407663","3":"0.0006159911","4":"0.0014783787","5":"0.0018479734","6":"0.0071454971","7":"0.007884686","8":"0.006283110","9":"0.0028335592","10":"0.0016015769","11":"0.0028335592","12":"0.0016015769","13":"0.0014783787","14":"0.016262166","15":"0.0076382900","16":"0.0034495503","17":"0.0040655415","18":"0.0024639645","19":"0.0049279290","20":"0.0030799556","21":"0.05371443","22":"0.0020943698","23":"0.0024639645","24":"0.0030799556","25":"1.847973e-03","26":"0.012196624","27":"0.004435136","28":"0.0024639645","29":"0.0011087840","30":"0.0043119379","31":"0.0018479734","32":"0.004188740","33":"0.0006159911","34":"0.0007391894","35":"0.0040655415","36":"1.355180e-03","37":"1.108784e-03","38":"0.0007391894","39":"0.0025871627","40":"0.0014783787","41":"0.005790317","42":"0.0017247752","43":"1.478379e-03","44":"0.006775902","45":"0.0103486510","46":"0.0030799556","47":"0.0004927929","48":"6.159911e-04","49":"0.0041887397","50":"0.0052975237","51":"0.013921400","52":"0.0023407663","53":"0.0040655415","54":"0.0020943698","55":"0.0051743255","56":"0.0050511273","57":"0.004804731","58":"0.002956757","59":"0.008870272","60":"0.0049279290","61":"0.0073918936","62":"0.011087840","63":"0.007884686","64":"0.0048047308","65":"0.0028335592","66":"0.012935814","67":"0.002956757","68":"0.0019711716","69":"0.0017247752","70":"0.013428607","71":"0.0009855858","72":"0.0004927929","73":"0.0030799556","74":"0.0011087840","75":"2.463965e-04","76":"0.0014783787","77":"0.011457435","78":"0.0011087840","79":"0.0008623876","80":"0.0004927929","81":"0.0012319823","82":"0.0022175681","83":"0.0019711716","84":"0.0040655415","85":"0.007268695","86":"8.623876e-04","87":"0.0006159911","88":"0.0039423432","89":"0.004681533","90":"0.0012319823","91":"0.0006159911","92":"0.003942343","93":"0.0009855858","94":"0.0081310829","95":"6.159911e-04","96":"0.0060367131","97":"0.0011087840","98":"0.0013551805","99":"0.0002463965","100":"0.000000e+00"},{"1":"0.0011880718","2":"0.0027325650","3":"0.0007128431","4":"0.0028513722","5":"0.0004752287","6":"0.0065343947","7":"0.006059166","8":"0.004039444","9":"0.0030889866","10":"0.0015444933","11":"0.0010692646","12":"0.0017821076","13":"0.0007128431","14":"0.020197220","15":"0.0090293454","16":"0.0035642153","17":"0.0060591660","18":"0.0020197220","19":"0.0068908162","20":"0.0034454081","21":"0.05346323","22":"0.0020197220","23":"0.0034454081","24":"0.0019009148","25":"1.306879e-03","26":"0.012474753","27":"0.005108709","28":"0.0004752287","29":"0.0009504574","30":"0.0038018296","31":"0.0028513722","32":"0.004989901","33":"0.0017821076","34":"0.0013068789","35":"0.0048710942","36":"9.504574e-04","37":"7.128431e-04","38":"0.0017821076","39":"0.0013068789","40":"0.0020197220","41":"0.004871094","42":"0.0035642153","43":"4.752287e-04","44":"0.006177973","45":"0.0049899014","46":"0.0039206368","47":"0.0009504574","48":"8.316502e-04","49":"0.0026137579","50":"0.0041582512","51":"0.015801354","52":"0.0022573363","53":"0.0039206368","54":"0.0027325650","55":"0.0027325650","56":"0.0051087086","57":"0.002257336","58":"0.002613758","59":"0.008910538","60":"0.0015444933","61":"0.0064155875","62":"0.012474753","63":"0.005702744","64":"0.0034454081","65":"0.0020197220","66":"0.017227041","67":"0.004039444","68":"0.0023761435","69":"0.0014256861","70":"0.009266960","71":"0.0014256861","72":"0.0008316502","73":"0.0027325650","74":"0.0010692646","75":"5.940359e-04","76":"0.0014256861","77":"0.009623381","78":"0.0016633005","79":"0.0009504574","80":"0.0013068789","81":"0.0009504574","82":"0.0016633005","83":"0.0019009148","84":"0.0043958655","85":"0.009266960","86":"0.000000e+00","87":"0.0005940359","88":"0.0023761435","89":"0.003326601","90":"0.0007128431","91":"0.0019009148","92":"0.001544493","93":"0.0010692646","94":"0.0096233813","95":"1.188072e-04","96":"0.0046334799","97":"0.0014256861","98":"0.0020197220","99":"0.0001188072","100":"0.000000e+00"},{"1":"0.0004747774","2":"0.0016617211","3":"0.0008308605","4":"0.0021364985","5":"0.0001186944","6":"0.0015430267","7":"0.002967359","8":"0.007952522","9":"0.0042729970","10":"0.0011869436","11":"0.0008308605","12":"0.0008308605","13":"0.0002373887","14":"0.025756677","15":"0.0062908012","16":"0.0008308605","17":"0.0055786350","18":"0.0010682493","19":"0.0041543027","20":"0.0064094955","21":"0.04118694","22":"0.0008308605","23":"0.0004747774","24":"0.0011869436","25":"2.373887e-04","26":"0.012818991","27":"0.011750742","28":"0.0005934718","29":"0.0000000000","30":"0.0022551929","31":"0.0024925816","32":"0.002492582","33":"0.0003560831","34":"0.0004747774","35":"0.0020178042","36":"2.373887e-04","37":"1.186944e-04","38":"0.0007121662","39":"0.0005934718","40":"0.0007121662","41":"0.003442136","42":"0.0009495549","43":"0.000000e+00","44":"0.007715134","45":"0.0054599407","46":"0.0008308605","47":"0.0001186944","48":"1.186944e-04","49":"0.0008308605","50":"0.0022551929","51":"0.010326409","52":"0.0018991098","53":"0.0090207715","54":"0.0036795252","55":"0.0060534125","56":"0.0072403561","57":"0.010445104","58":"0.001899110","59":"0.008189911","60":"0.0016617211","61":"0.0094955490","62":"0.010326409","63":"0.008664688","64":"0.0083086053","65":"0.0034421365","66":"0.023501484","67":"0.007240356","68":"0.0004747774","69":"0.0002373887","70":"0.013768546","71":"0.0008308605","72":"0.0000000000","73":"0.0015430267","74":"0.0008308605","75":"3.560831e-04","76":"0.0017804154","77":"0.009495549","78":"0.0017804154","79":"0.0010682493","80":"0.0125816024","81":"0.0007121662","82":"0.0009495549","83":"0.0016617211","84":"0.0024925816","85":"0.011513353","86":"4.747774e-04","87":"0.0001186944","88":"0.0011869436","89":"0.008427300","90":"0.0009495549","91":"0.0008308605","92":"0.001899110","93":"0.0020178042","94":"0.0048664688","95":"1.186944e-04","96":"0.0015430267","97":"0.0010682493","98":"0.0004747774","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0006537372","2":"0.0019612116","3":"0.0009806058","4":"0.0018522554","5":"0.0005447810","6":"0.0029418174","7":"0.004358248","8":"0.006210503","9":"0.0026149488","10":"0.0010895620","11":"0.0032686860","12":"0.0011985182","13":"0.0004358248","14":"0.024842014","15":"0.0077358902","16":"0.0016343430","17":"0.0073000654","18":"0.0018522554","19":"0.0061015472","20":"0.0046851166","21":"0.04478100","22":"0.0003268686","23":"0.0010895620","24":"0.0021791240","25":"4.358248e-04","26":"0.012421007","27":"0.007517978","28":"0.0009806058","29":"0.0001089562","30":"0.0032686860","31":"0.0020701678","32":"0.001961212","33":"0.0002179124","34":"0.0010895620","35":"0.0023970364","36":"2.179124e-04","37":"3.268686e-04","38":"0.0011985182","39":"0.0014164306","40":"0.0007626934","41":"0.004249292","42":"0.0011985182","43":"4.358248e-04","44":"0.007517978","45":"0.0065373720","46":"0.0023970364","47":"0.0001089562","48":"7.626934e-04","49":"0.0022880802","50":"0.0018522554","51":"0.014491175","52":"0.0030507736","53":"0.0051209414","54":"0.0033776422","55":"0.0077358902","56":"0.0066463282","57":"0.006319460","58":"0.001634343","59":"0.008825452","60":"0.0026149488","61":"0.0094791894","62":"0.010677708","63":"0.009588146","64":"0.0064284158","65":"0.0031597298","66":"0.019503160","67":"0.005556766","68":"0.0020701678","69":"0.0009806058","70":"0.012421007","71":"0.0010895620","72":"0.0001089562","73":"0.0018522554","74":"0.0006537372","75":"4.358248e-04","76":"0.0016343430","77":"0.010023970","78":"0.0011985182","79":"0.0007626934","80":"0.0059925910","81":"0.0013074744","82":"0.0014164306","83":"0.0021791240","84":"0.0030507736","85":"0.008389627","86":"1.089562e-04","87":"0.0005447810","88":"0.0014164306","89":"0.006319460","90":"0.0013074744","91":"0.0004358248","92":"0.002397036","93":"0.0009806058","94":"0.0053388538","95":"3.268686e-04","96":"0.0027239050","97":"0.0009806058","98":"0.0009806058","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0015360983","2":"0.0020946795","3":"0.0009775171","4":"0.0032118419","5":"0.0011171624","6":"0.0089372993","7":"0.006423684","8":"0.005027231","9":"0.0026532607","10":"0.0011171624","11":"0.0026532607","12":"0.0011171624","13":"0.0012568077","14":"0.016338500","15":"0.0080994275","16":"0.0051668761","17":"0.0020946795","18":"0.0025136154","19":"0.0060047479","20":"0.0023739701","21":"0.06074571","22":"0.0015360983","23":"0.0026532607","24":"0.0023739701","25":"8.378718e-04","26":"0.011869851","27":"0.005865103","28":"0.0018153889","29":"0.0008378718","30":"0.0051668761","31":"0.0020946795","32":"0.003630778","33":"0.0005585812","34":"0.0005585812","35":"0.0036307778","36":"1.536098e-03","37":"9.775171e-04","38":"0.0015360983","39":"0.0015360983","40":"0.0027929060","41":"0.005585812","42":"0.0020946795","43":"1.256808e-03","44":"0.003630778","45":"0.0029325513","46":"0.0033514872","47":"0.0006982265","48":"5.585812e-04","49":"0.0044686496","50":"0.0034911325","51":"0.016757436","52":"0.0012568077","53":"0.0034911325","54":"0.0015360983","55":"0.0057254573","56":"0.0067029744","57":"0.006004748","58":"0.003910068","59":"0.010892333","60":"0.0022343248","61":"0.0093562352","62":"0.014523111","63":"0.008239073","64":"0.0078201369","65":"0.0033514872","66":"0.012009496","67":"0.003910068","68":"0.0039100684","69":"0.0016757436","70":"0.013126658","71":"0.0015360983","72":"0.0006982265","73":"0.0025136154","74":"0.0013964530","75":"8.378718e-04","76":"0.0013964530","77":"0.008797654","78":"0.0019550342","79":"0.0012568077","80":"0.0009775171","81":"0.0009775171","82":"0.0029325513","83":"0.0018153889","84":"0.0039100684","85":"0.010054462","86":"4.189359e-04","87":"0.0006982265","88":"0.0040497137","89":"0.005725457","90":"0.0008378718","91":"0.0012568077","92":"0.004329004","93":"0.0016757436","94":"0.0075408463","95":"4.189359e-04","96":"0.0029325513","97":"0.0004189359","98":"0.0018153889","99":"0.0004189359","100":"0.000000e+00"},{"1":"0.0004848485","2":"0.0018181818","3":"0.0008484848","4":"0.0025454545","5":"0.0009696970","6":"0.0080000000","7":"0.008000000","8":"0.005212121","9":"0.0018181818","10":"0.0019393939","11":"0.0015757576","12":"0.0027878788","13":"0.0000000000","14":"0.015151515","15":"0.0111515152","16":"0.0032727273","17":"0.0056969697","18":"0.0010909091","19":"0.0030303030","20":"0.0064242424","21":"0.05842424","22":"0.0006060606","23":"0.0029090909","24":"0.0020606061","25":"7.272727e-04","26":"0.012121212","27":"0.003151515","28":"0.0012121212","29":"0.0004848485","30":"0.0060606061","31":"0.0027878788","32":"0.005212121","33":"0.0004848485","34":"0.0008484848","35":"0.0044848485","36":"1.939394e-03","37":"9.696970e-04","38":"0.0012121212","39":"0.0018181818","40":"0.0018181818","41":"0.006666667","42":"0.0032727273","43":"2.303030e-03","44":"0.005696970","45":"0.0052121212","46":"0.0036363636","47":"0.0003636364","48":"1.212121e-04","49":"0.0029090909","50":"0.0044848485","51":"0.015515152","52":"0.0026666667","53":"0.0032727273","54":"0.0027878788","55":"0.0036363636","56":"0.0066666667","57":"0.006666667","58":"0.003878788","59":"0.008969697","60":"0.0027878788","61":"0.0098181818","62":"0.016727273","63":"0.006060606","64":"0.0055757576","65":"0.0024242424","66":"0.010787879","67":"0.003272727","68":"0.0016969697","69":"0.0020606061","70":"0.007515152","71":"0.0007272727","72":"0.0007272727","73":"0.0029090909","74":"0.0010909091","75":"3.636364e-04","76":"0.0027878788","77":"0.007878788","78":"0.0032727273","79":"0.0006060606","80":"0.0003636364","81":"0.0004848485","82":"0.0027878788","83":"0.0041212121","84":"0.0035151515","85":"0.004363636","86":"2.424242e-04","87":"0.0037575758","88":"0.0014545455","89":"0.004121212","90":"0.0015757576","91":"0.0008484848","92":"0.003030303","93":"0.0018181818","94":"0.0077575758","95":"3.636364e-04","96":"0.0038787879","97":"0.0016969697","98":"0.0016969697","99":"0.0001212121","100":"1.212121e-04"},{"1":"0.0003158061","2":"0.0014211274","3":"0.0015790305","4":"0.0020527396","5":"0.0014211274","6":"0.0050528975","7":"0.009632086","8":"0.006631928","9":"0.0020527396","10":"0.0017369335","11":"0.0028422549","12":"0.0017369335","13":"0.0006316122","14":"0.017685141","15":"0.0097899889","16":"0.0030001579","17":"0.0037896731","18":"0.0012632244","19":"0.0044212853","20":"0.0042633823","21":"0.04894994","22":"0.0020527396","23":"0.0022106427","24":"0.0023685457","25":"2.842255e-03","26":"0.009632086","27":"0.004421285","28":"0.0006316122","29":"0.0003158061","30":"0.0044212853","31":"0.0025264488","32":"0.005842413","33":"0.0014211274","34":"0.0011053213","35":"0.0033159640","36":"7.895152e-04","37":"6.316122e-04","38":"0.0018948366","39":"0.0017369335","40":"0.0012632244","41":"0.005684510","42":"0.0023685457","43":"1.736934e-03","44":"0.004421285","45":"0.0074214432","46":"0.0030001579","47":"0.0012632244","48":"1.579030e-04","49":"0.0036317701","50":"0.0025264488","51":"0.011211116","52":"0.0026843518","53":"0.0056845097","54":"0.0022106427","55":"0.0039475762","56":"0.0060003158","57":"0.004894994","58":"0.003473867","59":"0.008684668","60":"0.0020527396","61":"0.0091583768","62":"0.014211274","63":"0.007421443","64":"0.0048949945","65":"0.0042633823","66":"0.013105953","67":"0.005842413","68":"0.0036317701","69":"0.0025264488","70":"0.011369019","71":"0.0009474183","72":"0.0004737091","73":"0.0028422549","74":"0.0009474183","75":"9.474183e-04","76":"0.0017369335","77":"0.007421443","78":"0.0017369335","79":"0.0015790305","80":"0.0004737091","81":"0.0018948366","82":"0.0023685457","83":"0.0020527396","84":"0.0039475762","85":"0.006631928","86":"6.316122e-04","87":"0.0009474183","88":"0.0014211274","89":"0.006316122","90":"0.0023685457","91":"0.0011053213","92":"0.003315964","93":"0.0009474183","94":"0.0074214432","95":"1.579030e-04","96":"0.0036317701","97":"0.0009474183","98":"0.0015790305","99":"0.0001579030","100":"0.000000e+00"},{"1":"0.0008485363","2":"0.0009899590","3":"0.0004242681","4":"0.0036769905","5":"0.0005656908","6":"0.0041012587","7":"0.007353981","8":"0.008485363","9":"0.0025456088","10":"0.0007071136","11":"0.0049497949","12":"0.0022627634","13":"0.0004242681","14":"0.023476170","15":"0.0084853627","16":"0.0014142271","17":"0.0046669495","18":"0.0012728044","19":"0.0050912176","20":"0.0046669495","21":"0.06166030","22":"0.0004242681","23":"0.0001414227","24":"0.0028284542","25":"2.828454e-04","26":"0.012586621","27":"0.006364022","28":"0.0009899590","29":"0.0000000000","30":"0.0043841041","31":"0.0009899590","32":"0.002969877","33":"0.0011313817","34":"0.0011313817","35":"0.0045255268","36":"0.000000e+00","37":"0.000000e+00","38":"0.0015556498","39":"0.0012728044","40":"0.0007071136","41":"0.003818413","42":"0.0029698770","43":"0.000000e+00","44":"0.003676991","45":"0.0052326404","46":"0.0001414227","47":"0.0000000000","48":"0.000000e+00","49":"0.0007071136","50":"0.0028284542","51":"0.015839344","52":"0.0005656908","53":"0.0046669495","54":"0.0042426814","55":"0.0043841041","56":"0.0052326404","57":"0.004808372","58":"0.002969877","59":"0.012728044","60":"0.0028284542","61":"0.0086267855","62":"0.012728044","63":"0.008485363","64":"0.0067882902","65":"0.0031112997","66":"0.014142271","67":"0.004666950","68":"0.0021213407","69":"0.0016970725","70":"0.010323858","71":"0.0011313817","72":"0.0001414227","73":"0.0031112997","74":"0.0007071136","75":"0.000000e+00","76":"0.0031112997","77":"0.007212558","78":"0.0026870315","79":"0.0012728044","80":"0.0005656908","81":"0.0021213407","82":"0.0007071136","83":"0.0026870315","84":"0.0031112997","85":"0.006222599","86":"0.000000e+00","87":"0.0001414227","88":"0.0015556498","89":"0.009192476","90":"0.0011313817","91":"0.0008485363","92":"0.003676991","93":"0.0002828454","94":"0.0082025173","95":"1.414227e-04","96":"0.0007071136","97":"0.0012728044","98":"0.0011313817","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0009156671","2":"0.0025638678","3":"0.0009156671","4":"0.0014650673","5":"0.0006409669","6":"0.0032048347","7":"0.005219302","8":"0.008424137","9":"0.0019229008","10":"0.0005494002","11":"0.0027470012","12":"0.0016482007","13":"0.0004578335","14":"0.025272411","15":"0.0082410036","16":"0.0013735006","17":"0.0077831700","18":"0.0015566340","19":"0.0048530354","20":"0.0053108690","21":"0.05237616","22":"0.0002747001","23":"0.0005494002","24":"0.0026554345","25":"9.156671e-05","26":"0.014101273","27":"0.008607270","28":"0.0007325337","29":"0.0000000000","30":"0.0038458017","31":"0.0028385679","32":"0.001831334","33":"0.0006409669","34":"0.0009156671","35":"0.0025638678","36":"3.662668e-04","37":"4.578335e-04","38":"0.0005494002","39":"0.0010988005","40":"0.0005494002","41":"0.004028935","42":"0.0030217013","43":"8.241004e-04","44":"0.008241004","45":"0.0069590697","46":"0.0009156671","47":"0.0004578335","48":"9.156671e-05","49":"0.0016482007","50":"0.0036626683","51":"0.016115740","52":"0.0010988005","53":"0.0033879681","54":"0.0024723011","55":"0.0085157037","56":"0.0063181027","57":"0.005036169","58":"0.002655434","59":"0.010804871","60":"0.0039373684","61":"0.0111711382","62":"0.012544639","63":"0.007416903","64":"0.0077831700","65":"0.0042120685","66":"0.021609743","67":"0.005127736","68":"0.0013735006","69":"0.0010072338","70":"0.010988005","71":"0.0010072338","72":"0.0001831334","73":"0.0020144675","74":"0.0006409669","75":"2.747001e-04","76":"0.0035711015","77":"0.007783170","78":"0.0023807344","79":"0.0003662668","80":"0.0038458017","81":"0.0004578335","82":"0.0011903672","83":"0.0027470012","84":"0.0028385679","85":"0.005585569","86":"9.156671e-05","87":"0.0007325337","88":"0.0015566340","89":"0.005402436","90":"0.0005494002","91":"0.0005494002","92":"0.002655434","93":"0.0010988005","94":"0.0054940024","95":"9.156671e-05","96":"0.0025638678","97":"0.0011903672","98":"0.0008241004","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0009160560","2":"0.0027481679","3":"0.0005829447","4":"0.0030812791","5":"0.0004163891","6":"0.0053297801","7":"0.006828781","8":"0.005829447","9":"0.0024983344","10":"0.0013324450","11":"0.0040806129","12":"0.0012491672","13":"0.0007495003","14":"0.018987342","15":"0.0096602265","16":"0.0022485010","17":"0.0043304464","18":"0.0014157229","19":"0.0041638907","20":"0.0040806129","21":"0.05671219","22":"0.0007495003","23":"0.0023317788","24":"0.0027481679","25":"9.160560e-04","26":"0.013824117","27":"0.005996003","28":"0.0014990007","29":"0.0003331113","30":"0.0044970020","31":"0.0010826116","32":"0.004080613","33":"0.0010826116","34":"0.0009993338","35":"0.0048301133","36":"8.327781e-04","37":"1.165889e-03","38":"0.0019153897","39":"0.0019153897","40":"0.0016655563","41":"0.005746169","42":"0.0021652232","43":"1.415723e-03","44":"0.008910726","45":"0.0052465023","46":"0.0021652232","47":"0.0008327781","48":"3.331113e-04","49":"0.0033311126","50":"0.0044970020","51":"0.016822119","52":"0.0015822785","53":"0.0030812791","54":"0.0043304464","55":"0.0056628914","56":"0.0076615590","57":"0.004913391","58":"0.002498334","59":"0.011575616","60":"0.0044137242","61":"0.0068287808","62":"0.012908061","63":"0.006828781","64":"0.0063291139","65":"0.0014990007","66":"0.017738175","67":"0.002998001","68":"0.0016655563","69":"0.0020819454","70":"0.010159893","71":"0.0014157229","72":"0.0002498334","73":"0.0020819454","74":"0.0006662225","75":"5.829447e-04","76":"0.0009993338","77":"0.009160560","78":"0.0020819454","79":"0.0016655563","80":"0.0003331113","81":"0.0010826116","82":"0.0014157229","83":"0.0021652232","84":"0.0055796136","85":"0.005662891","86":"3.331113e-04","87":"0.0006662225","88":"0.0022485010","89":"0.002581612","90":"0.0012491672","91":"0.0009993338","92":"0.002914724","93":"0.0009993338","94":"0.0064123917","95":"8.327781e-05","96":"0.0038307795","97":"0.0007495003","98":"0.0019986676","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0005414185","2":"0.0023010287","3":"0.0006767731","4":"0.0035192204","5":"0.0004060639","6":"0.0031131565","7":"0.004195994","8":"0.005549540","9":"0.0010828370","10":"0.0009474824","11":"0.0024363833","12":"0.0029778018","13":"0.0004060639","14":"0.024634543","15":"0.0070384407","16":"0.0014889009","17":"0.0043313481","18":"0.0006767731","19":"0.0039252842","20":"0.0037899296","21":"0.05481862","22":"0.0004060639","23":"0.0014889009","24":"0.0020303194","25":"4.060639e-04","26":"0.013670818","27":"0.007850568","28":"0.0013535463","29":"0.0000000000","30":"0.0033838657","31":"0.0014889009","32":"0.003383866","33":"0.0001353546","34":"0.0004060639","35":"0.0032485111","36":"2.707093e-04","37":"2.707093e-04","38":"0.0018949648","39":"0.0005414185","40":"0.0002707093","41":"0.002842447","42":"0.0013535463","43":"5.414185e-04","44":"0.007579859","45":"0.0052788305","46":"0.0016242555","47":"0.0002707093","48":"2.707093e-04","49":"0.0018949648","50":"0.0035192204","51":"0.014889009","52":"0.0010828370","53":"0.0047374120","54":"0.0054141852","55":"0.0044667028","56":"0.0070384407","57":"0.008798051","58":"0.003789930","59":"0.008121278","60":"0.0031131565","61":"0.0096101787","62":"0.011775853","63":"0.008662696","64":"0.0082566324","65":"0.0047374120","66":"0.021386031","67":"0.005143476","68":"0.0013535463","69":"0.0016242555","70":"0.010422306","71":"0.0009474824","72":"0.0009474824","73":"0.0029778018","74":"0.0005414185","75":"6.767731e-04","76":"0.0031131565","77":"0.010693016","78":"0.0009474824","79":"0.0013535463","80":"0.0039252842","81":"0.0006767731","82":"0.0010828370","83":"0.0031131565","84":"0.0025717380","85":"0.009745533","86":"1.353546e-04","87":"0.0004060639","88":"0.0018949648","89":"0.004737412","90":"0.0004060639","91":"0.0009474824","92":"0.002165674","93":"0.0006767731","94":"0.0043313481","95":"0.000000e+00","96":"0.0018949648","97":"0.0009474824","98":"0.0009474824","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0005155171","2":"0.0004124137","3":"0.0009279307","4":"0.0019589648","5":"0.0003093102","6":"0.0021651717","7":"0.003917930","8":"0.005155171","9":"0.0031962058","10":"0.0011341375","11":"0.0019589648","12":"0.0008248273","13":"0.0002062068","14":"0.025982060","15":"0.0075265491","16":"0.0022682751","17":"0.0051551706","18":"0.0014434478","19":"0.0030931024","20":"0.0055675843","21":"0.04546861","22":"0.0014434478","23":"0.0007217239","24":"0.0023713785","25":"0.000000e+00","26":"0.013712754","27":"0.006289308","28":"0.0006186205","29":"0.0000000000","30":"0.0024744819","31":"0.0023713785","32":"0.001958965","33":"0.0007217239","34":"0.0005155171","35":"0.0024744819","36":"3.093102e-04","37":"5.155171e-04","38":"0.0009279307","39":"0.0012372410","40":"0.0013403444","41":"0.003814826","42":"0.0013403444","43":"2.062068e-04","44":"0.007423446","45":"0.0039179297","46":"0.0011341375","47":"0.0003093102","48":"0.000000e+00","49":"0.0011341375","50":"0.0038148263","51":"0.012887927","52":"0.0030931024","53":"0.0068048252","54":"0.0029899990","55":"0.0052582740","56":"0.0061862048","57":"0.009073100","58":"0.002371378","59":"0.009794824","60":"0.0031962058","61":"0.0105165481","62":"0.011238272","63":"0.010722755","64":"0.0073203423","65":"0.0026806887","66":"0.017836890","67":"0.006804825","68":"0.0021651717","69":"0.0015465512","70":"0.014434478","71":"0.0008248273","72":"0.0002062068","73":"0.0012372410","74":"0.0016496546","75":"2.062068e-04","76":"0.0021651717","77":"0.007526549","78":"0.0022682751","79":"0.0008248273","80":"0.0088668935","81":"0.0006186205","82":"0.0016496546","83":"0.0016496546","84":"0.0021651717","85":"0.014125168","86":"0.000000e+00","87":"0.0004124137","88":"0.0015465512","89":"0.009279307","90":"0.0004124137","91":"0.0008248273","92":"0.001443448","93":"0.0016496546","94":"0.0075265491","95":"4.124137e-04","96":"0.0016496546","97":"0.0014434478","98":"0.0010310341","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0047834349","2":"0.0019657952","3":"0.0034073783","4":"0.0028831662","5":"0.0045213289","6":"0.0115326650","7":"0.009697923","8":"0.003997117","9":"0.0030142193","10":"0.0029486927","11":"0.0021623747","12":"0.0005242120","13":"0.0009173711","14":"0.013301881","15":"0.0048489614","16":"0.0097634493","17":"0.0011794771","18":"0.0095668698","19":"0.0136950396","20":"0.0024900072","21":"0.04940699","22":"0.0008518446","23":"0.0013760566","24":"0.0003931590","25":"8.518446e-04","26":"0.009304764","27":"0.012122404","28":"0.0006552651","29":"0.0032763253","30":"0.0016381626","31":"0.0001310530","32":"0.008321866","33":"0.0050455409","34":"0.0012450036","35":"0.0103531879","36":"4.128170e-03","37":"2.490007e-03","38":"0.0120568770","39":"0.0037350108","40":"0.0029486927","41":"0.008780552","42":"0.0024244807","43":"3.603958e-03","44":"0.002555534","45":"0.0049144879","46":"0.0047179084","47":"0.0006552651","48":"3.276325e-04","49":"0.0053731734","50":"0.0024900072","51":"0.011794771","52":"0.0057008060","53":"0.0020313217","54":"0.0012450036","55":"0.0007863181","56":"0.0032107988","57":"0.014022672","58":"0.002883166","59":"0.009566870","60":"0.0002621060","61":"0.0028831662","62":"0.026472708","63":"0.004259223","64":"0.0017692156","65":"0.0012450036","66":"0.009566870","67":"0.007207916","68":"0.0031452723","69":"0.0048489614","70":"0.016578206","71":"0.0007207916","72":"0.0029486927","73":"0.0023589542","74":"0.0106152939","75":"3.276325e-04","76":"0.0015071096","77":"0.009828976","78":"0.0018347422","79":"0.0034073783","80":"0.0009173711","81":"0.0055042265","82":"0.0024244807","83":"0.0019657952","84":"0.0015726361","85":"0.010156608","86":"4.586855e-04","87":"0.0019002687","88":"0.0014415831","89":"0.001703689","90":"0.0020313217","91":"0.0017036891","92":"0.003472905","93":"0.0007207916","94":"0.0045213289","95":"5.897385e-04","96":"0.0020968482","97":"0.0006552651","98":"0.0026865867","99":"0.0001965795","100":"1.572636e-03"},{"1":"0.0028068862","2":"0.0026821357","3":"0.0009356287","4":"0.0042415170","5":"0.0016841317","6":"0.0116017964","7":"0.010167166","8":"0.005364271","9":"0.0045533932","10":"0.0023702595","11":"0.0014970060","12":"0.0032435130","13":"0.0004366267","14":"0.013784930","15":"0.0085454092","16":"0.0025573852","17":"0.0024950100","18":"0.0006861277","19":"0.0085454092","20":"0.0051771457","21":"0.04335080","22":"0.0019960080","23":"0.0022455090","24":"0.0010603792","25":"1.684132e-03","26":"0.015281936","27":"0.009044411","28":"0.0006237525","29":"0.0029316367","30":"0.0057385230","31":"0.0011227545","32":"0.005364271","33":"0.0004990020","34":"0.0016841317","35":"0.0058008982","36":"2.370259e-03","37":"2.619760e-03","38":"0.0016841317","39":"0.0014346307","40":"0.0026821357","41":"0.007672156","42":"0.0026821357","43":"1.871257e-03","44":"0.007984032","45":"0.0054890220","46":"0.0062999002","47":"0.0008108782","48":"6.861277e-04","49":"0.0076097804","50":"0.0038672655","51":"0.008670160","52":"0.0061751497","53":"0.0040543912","54":"0.0021207585","55":"0.0014970060","56":"0.0034306387","57":"0.005800898","58":"0.006050399","59":"0.009730539","60":"0.0008732535","61":"0.0074850299","62":"0.027133234","63":"0.006112774","64":"0.0066117764","65":"0.0010603792","66":"0.011539421","67":"0.003430639","68":"0.0033058882","69":"0.0028068862","70":"0.007859281","71":"0.0006237525","72":"0.0014970060","73":"0.0015593812","74":"0.0021831337","75":"8.108782e-04","76":"0.0010603792","77":"0.006112774","78":"0.0016217565","79":"0.0011851297","80":"0.0006237525","81":"0.0021207585","82":"0.0021207585","83":"0.0016217565","84":"0.0037425150","85":"0.006487026","86":"6.237525e-04","87":"0.0019336327","88":"0.0016841317","89":"0.002806886","90":"0.0013722555","91":"0.0014346307","92":"0.003617764","93":"0.0008732535","94":"0.0078592814","95":"5.613772e-04","96":"0.0039920160","97":"0.0007485030","98":"0.0026197605","99":"0.0000000000","100":"0.000000e+00"},{"1":"0.0020616128","2":"0.0022972257","3":"0.0011191612","4":"0.0048300642","5":"0.0012958709","6":"0.0097779349","7":"0.007304000","8":"0.006243742","9":"0.0025328385","10":"0.0018259999","11":"0.0020616128","12":"0.0023561289","13":"0.0005301290","14":"0.013724451","15":"0.0093067091","16":"0.0020027095","17":"0.0040054191","18":"0.0004123226","19":"0.0040054191","20":"0.0057136125","21":"0.05330742","22":"0.0003534193","23":"0.0010602580","24":"0.0021794192","25":"1.060258e-03","26":"0.012016257","27":"0.003887613","28":"0.0023561289","29":"0.0016492902","30":"0.0047711610","31":"0.0012369677","32":"0.003828709","33":"0.0009424516","34":"0.0015314838","35":"0.0042410320","36":"2.002710e-03","37":"1.413677e-03","38":"0.0004123226","39":"0.0014136773","40":"0.0014136773","41":"0.006243742","42":"0.0020616128","43":"2.061613e-03","44":"0.007421806","45":"0.0054190964","46":"0.0044766449","47":"0.0007068387","48":"4.123226e-04","49":"0.0041821288","50":"0.0032985804","51":"0.008128645","52":"0.0027095482","53":"0.0028862579","54":"0.0029451611","55":"0.0036519998","56":"0.0047711610","57":"0.007068387","58":"0.004123226","59":"0.009188903","60":"0.0037109030","61":"0.0128998056","62":"0.018377805","63":"0.007539612","64":"0.0097779349","65":"0.0020027095","66":"0.016139483","67":"0.004123226","68":"0.0023561289","69":"0.0030629675","70":"0.006656064","71":"0.0004712258","72":"0.0004123226","73":"0.0020616128","74":"0.0015903870","75":"5.890322e-05","76":"0.0024150321","77":"0.008128645","78":"0.0031807740","79":"0.0002356129","80":"0.0005301290","81":"0.0004712258","82":"0.0019438063","83":"0.0020616128","84":"0.0041821288","85":"0.005595806","86":"5.301290e-04","87":"0.0017081934","88":"0.0021794192","89":"0.002709548","90":"0.0012369677","91":"0.0009424516","92":"0.003475290","93":"0.0008246451","94":"0.0057136125","95":"1.119161e-03","96":"0.0031218708","97":"0.0006479354","98":"0.0022383224","99":"0.0001178064","100":"0.000000e+00"},{"1":"0.0025763399","2":"0.0027875153","3":"0.0014359927","4":"0.0038856274","5":"0.0002111754","6":"0.0008447016","7":"0.006124087","8":"0.006504202","9":"0.0013092875","10":"0.0005068210","11":"0.0009291718","12":"0.0060396165","13":"0.0001267052","14":"0.026101280","15":"0.0100097141","16":"0.0009291718","17":"0.0076867846","18":"0.0011403472","19":"0.0026608101","20":"0.0076867846","21":"0.05085104","22":"0.0012248173","23":"0.0001267052","24":"0.0017738734","25":"1.689403e-04","26":"0.015669215","27":"0.001435993","28":"0.0013937577","29":"0.0001267052","30":"0.0023651645","31":"0.0009291718","32":"0.001858344","33":"0.0006757613","34":"0.0012670524","35":"0.0024918697","36":"4.223508e-05","37":"8.447016e-05","38":"0.0014782278","39":"0.0010981121","40":"0.0012670524","41":"0.006166322","42":"0.0033788064","43":"8.447016e-05","44":"0.007771255","45":"0.0054483254","46":"0.0002111754","47":"0.0001689403","48":"4.223508e-05","49":"0.0005490560","50":"0.0043502133","51":"0.016049331","52":"0.0013937577","53":"0.0019428137","54":"0.0035899818","55":"0.0023229294","56":"0.0029142206","57":"0.010685475","58":"0.002576340","59":"0.012079233","60":"0.0044346834","61":"0.0110233560","62":"0.024791992","63":"0.005068210","64":"0.0096295983","65":"0.0025341048","66":"0.015204629","67":"0.004223508","68":"0.0012248173","69":"0.0011403472","70":"0.004645859","71":"0.0006757613","72":"0.0009714069","73":"0.0011403472","74":"0.0001689403","75":"3.801157e-04","76":"0.0044346834","77":"0.008615956","78":"0.0023229294","79":"0.0005912911","80":"0.0002534105","81":"0.0008869367","82":"0.0022384593","83":"0.0029986907","84":"0.0024918697","85":"0.002618575","86":"1.689403e-04","87":"0.0018161085","88":"0.0002956456","89":"0.003505512","90":"0.0013937577","91":"0.0023229294","92":"0.002238459","93":"0.0030409258","94":"0.0038433923","95":"4.223508e-04","96":"0.0010558770","97":"0.0011825823","98":"0.0008447016","99":"0.0000000000","100":"2.111754e-04"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Между векторами можно посчитать расстояние, как в школе (но больше измерений).</p>
+<div class="column">
+<p><img data-src="https://sysblok.ru/wp-content/uploads/2023/11/image-3.png" style="width:83.0%"></p>
+</div><div class="column">
+<p><img data-src="knn.png"></p>
+</div></section>
+<section id="от-вектора-к-дереву" class="slide level2">
+<h2>От вектора к дереву</h2>
+<p>Вид дерева может меняться в зависимости от (а) метрики расстояния; (б) способа присоединения; (в) числа признаков.</p>
+
+<img data-src="img2.png" class="r-stretch"></section>
+<section id="подробнее" class="slide level2">
+<h2>Подробнее</h2>
+<div class="column">
+<ul>
+<li class="fragment"><p>Стилометрия древнегреческих текстов // Системный Блокъ 2024 (<a href="https://sysblok.ru/philology/stilometrija-drevnegrecheskih-tekstov-rabotaet-li-delta-i-chto-krome-nee/">текст</a>)</p></li>
+<li class="fragment"><p>Вычислить Платона // IQ-HSE.RU 2024 (<a href="https://iq-media.ru/archive/934333352.html">текст</a>)</p></li>
+<li class="fragment"><p>За обновлениями можно следить в Telegram: Каналы RAntiquity (@rantiquity) и Antibarbari HSE (@antibarbari)</p></li>
+</ul>
+</div><div class="column">
+<p><img data-src="socrates_plato.jpg"></p>
+</div><div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

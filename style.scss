@@ -1,0 +1,69 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+// fonts
+$font-family-sans-serif: Roboto Condensed, sans-serif !default;
+
+// colors
+$body-bg: #002b36 !default;
+$body-color: #93a1a1 !default;
+$text-muted: $body-color !default;
+$link-color: #268bd2 !default;
+$selection-bg: #d33682 !default;
+$input-panel-bg: rgba(233, 236, 239, 0.2) !default;
+
+// headings
+$presentation-heading-font: "Roboto Condensed", sans-serif !default;
+$presentation-heading-color: #eee8d5 !default;
+$presentation-heading-text-transform: uppercase !default;
+
+/*-- scss:rules --*/
+
+html * {
+  color-profile: sRGB;
+  rendering-intent: auto;
+}
+
+input[type="radio"] {
+  display: inline-flex;
+  align-self: center;
+  width: 14px;
+  height: 14px;
+  margin-right: 20px;
+  margin-bottom: 0.5em;
+  appearance: none;
+  border: transparent;
+  border-radius: 50%;
+  background-color: white;
+}
+
+input[type="radio"]:checked {
+  width: 14px;
+  height: 14px;
+  outline: 2px solid deepskyblue;
+  outline-offset: 4px;
+  background-color: deepskyblue;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 50%;
+  justify-self: center;
+  font-size: inherit;
+  font-weight: normal;
+  line-height: normal;
+  border: 2px solid;
+  padding: 0.25em 0.5em 0.25em 0.5em;
+  margin: 1em 0 0.3em 0;
+  background-color: transparent;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: darkslategrey;
+}
+
