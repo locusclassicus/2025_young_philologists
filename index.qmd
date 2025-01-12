@@ -3,9 +3,13 @@ title: "Вычислить Платона"
 subtitle: "Что могут сказать количественные методы о подлинности диалогов корпуса?"
 format: 
   revealjs:
+    pointer: 
+      color: tomato
     incremental: true   
     theme: [moon, style.scss]
     scrollable: true
+revealjs-plugins:
+  - pointer
 echo: false
 font: Roboto
 df-print: paged
